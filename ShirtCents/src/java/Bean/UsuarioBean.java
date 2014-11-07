@@ -14,7 +14,7 @@ import util.JpaUtil;
 //Parte 2
 
 //Gilberto Commit - Novo
-
+//novo de novo gilberto
 @ManagedBean
 @SessionScoped
 public class UsuarioBean {
