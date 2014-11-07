@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import util.JpaUtil;
 
 //Testando Commit haha
+//Parte 2
 
 @ManagedBean
 @SessionScoped
