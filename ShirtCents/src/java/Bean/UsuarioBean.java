@@ -10,13 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import util.JpaUtil;
 
-//Testando Commit haha
-//Parte 2
-
-//Gilberto Commit - Novo
-
-//Novamente GitHubssssssssssssss
-//ssssssssssssssssssssss
 
 
 @ManagedBean
