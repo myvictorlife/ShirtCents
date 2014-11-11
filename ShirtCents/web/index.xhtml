@@ -8,70 +8,79 @@
         <h:outputStylesheet library="css" name="usuario.css" />
     </h:head>
     <h:body>
-        <h3>Usuario</h3>
-        
-        <h:form prependId="false" id="formUsuario" >
-            <h:panelGrid>
-                Nome Completo:<h:inputText value="" />
-                Email:<h:inputText value="" />
-                User:<h:inputText value="" />
-                Senha: <h:inputText value="" />
-                Confirmar Senha:<h:inputText value="" />
-                
-                Profile:
-            </h:panelGrid>
-            <h:commandButton value="Cadastrar"></h:commandButton>
-            <h:commandButton value="Limpar"></h:commandButton>
-        </h:form>
-        
-        <f:view>
+        <h3 id="principal">Usuario</h3>
 
+        <div id="panelUsuario">
+            <h:form prependId="false">
 
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <h:dataTable value="#{usuarioBean.usuarios}" var="item" border="1">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{item.id}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText value="#{item.nome}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Email"/>
-                        </f:facet>
-                        <h:outputText value="#{item.email}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Login"/>
-                        </f:facet>
-                        <h:outputText value="#{item.login}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Senha"/>
-                        </f:facet>
-                        <h:outputText value="#{item.senha}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Profile"/>
-                        </f:facet>
-                        <h:outputText value="#{item.profile}"/>
-                    </h:column>
-                </h:dataTable>
+                <h:panelGrid>
+                    Nome Completo:<h:inputText value="#{usuarioBean.usuario.nome}" />
+                    Email:<h:inputText value="#{usuarioBean.usuario.email}" />
+                    User:<h:inputText value="#{usuarioBean.usuario.login}" />
+                    Senha: <h:inputText value="#{usuarioBean.usuario.senha}" />
+                    Confirmar Senha:<h:inputText value="#{usuarioBean.confirmaSenha}" />
+
+                    Profile:
+                    <h:selectOneRadio value="#{usuarioBean.usuario.profile}">
+                        <f:selectItem itemValue="" itemLabel=" Admin" />
+                        <f:selectItem itemValue="0" itemLabel=" Leitor" />
+                    </h:selectOneRadio>
+                </h:panelGrid>
+
+                <h:commandButton value="Cadastrar" action="#{usuarioBean.salvar()}"></h:commandButton>
+                <h:commandButton value="Limpar" action="#{usuarioBean.novo()}"></h:commandButton>
             </h:form>
-        </f:view>
+        </div>
 
+        <div id="listUsuario">
+
+            <f:view>
+                <h:form>
+                    <h3 id="usuariosCadastrados"><h:outputText value="Usuários Cadastrados"/></h3>
+                    <h:dataTable value="#{usuarioBean.usuarios}" var="item" border="1">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nome}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Login"/>
+                            </f:facet>
+                            <h:outputText value="#{item.login}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Senha"/>
+                            </f:facet>
+                            <h:outputText value="#{item.senha}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Profile"/>
+                            </f:facet>
+                            <h:outputText value="#{item.profile}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </f:view>
+        </div>
         <h:messages></h:messages>
-        
+
+
+
     </h:body>
 </html>
-
