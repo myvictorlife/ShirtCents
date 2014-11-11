@@ -8,10 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import util.JpaUtil;
 
-//Commit 19:49hr Victor
-// hahaha Agora deu Certo kk
 
 @ManagedBean
 @SessionScoped
@@ -20,8 +19,40 @@ public class UsuarioBean {
     private Usuario usuario = new Usuario();
     private List<Usuario> usuarios = new ArrayList<>();
     
+    private String confirmaSenha;
+    
     public UsuarioBean() {
         listarTodos();
+    }
+    
+   public void salvar() {
+        salvarCliente();
+        listarTodos();
+        novo();
+    }
+   
+   private void salvarCliente() {
+        EntityManager manager = null;
+        EntityTransaction etx = null;
+        try {
+            manager = JpaUtil.getEntityManager(); //equivale a uma conexão
+            etx = manager.getTransaction();
+            etx.begin();
+
+            usuario = manager.merge(usuario);     //insert ou update
+
+            etx.commit();
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ", "Cliente salvo com sucesso! " + new java.util.Date()));
+        } catch (Exception ex) {
+            try {
+                etx.rollback();
+            } catch (Exception ex2) { /* nada aui por hora */            }
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", ex.getMessage()));
+        } finally {
+            JpaUtil.closeEntityManager(manager);
+        }
     }
     
     public void novo(){
@@ -62,8 +93,13 @@ public class UsuarioBean {
         this.usuarios = usuarios;
     }
 
-    
-    
-    
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
+
     
 }
