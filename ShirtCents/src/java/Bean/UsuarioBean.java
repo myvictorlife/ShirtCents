@@ -12,6 +12,7 @@ import javax.persistence.EntityTransaction;
 import util.JpaUtil;
 
 //Commit Pedro
+//Victor Cesar
 @ManagedBean
 @SessionScoped
 public class UsuarioBean {
