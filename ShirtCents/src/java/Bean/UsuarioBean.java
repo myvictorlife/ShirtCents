@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import util.JpaUtil;
 
-
+//Commit 19:49hr Victor
 
 @ManagedBean
 @SessionScoped
