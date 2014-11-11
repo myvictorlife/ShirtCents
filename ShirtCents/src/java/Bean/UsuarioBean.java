@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import util.JpaUtil;
 
 //Commit 19:49hr Victor
-// hahaha
+// hahaha Agora deu Certo kk
 
 @ManagedBean
 @SessionScoped
