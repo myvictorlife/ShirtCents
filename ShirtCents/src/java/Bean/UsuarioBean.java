@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import util.JpaUtil;
-
+//Pedro Viado
 //Commit Pedro
 //Victor Cesar
 @ManagedBean
