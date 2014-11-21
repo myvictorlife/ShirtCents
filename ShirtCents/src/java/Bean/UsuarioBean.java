@@ -13,6 +13,8 @@ import util.JpaUtil;
 //Pedro Viado
 //Commit Pedro
 //Victor Cesar
+
+//Pablo na area muleque
 @ManagedBean
 @SessionScoped
 public class UsuarioBean {
