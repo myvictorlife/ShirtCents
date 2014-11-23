@@ -37,18 +37,14 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Basic(optional = false)
     @Column(name = "NOME")
     private String nome;
     @Column(name = "EMAIL")
     private String email;
-    @Basic(optional = false)
     @Column(name = "LOGIN")
     private String login;
-    @Basic(optional = false)
     @Column(name = "SENHA")
     private String senha;
-    @Basic(optional = false)
     @Column(name = "PROFILE")
     private String profile;
 
@@ -57,14 +53,6 @@ public class Usuario implements Serializable {
 
     public Usuario(Integer id) {
         this.id = id;
-    }
-
-    public Usuario(Integer id, String nome, String login, String senha, String profile) {
-        this.id = id;
-        this.nome = nome;
-        this.login = login;
-        this.senha = senha;
-        this.profile = profile;
     }
 
     public Integer getId() {
