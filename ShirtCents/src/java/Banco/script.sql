@@ -58,6 +58,7 @@ CREATE TABLE Produto (
   preco_venda DOUBLE,
   quantidade INT,
   id_categoria INT NOT NULL,
+  sexo VARCHAR(10),
   PRIMARY KEY (id_produto),
   FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)
    );

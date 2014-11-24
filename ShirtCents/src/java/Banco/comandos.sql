@@ -30,11 +30,11 @@ INSERT INTO categoria (categoria) VALUES ('PULSEIRA');
 -- Table `shirtCents`.`Produto`
 -- -----------------------------------------------------
 
-INSERT INTO Produto (descricao, tamanho, preco_custo, quantidade, id_categoria) 
-    VALUES ('Camisa Polo', 'G', 22.90, 20, 1);
+INSERT INTO Produto (descricao, tamanho, preco_custo,preco_venda, quantidade, id_categoria,sexo) 
+    VALUES ('Camisa Polo', 'G', 22.90,80, 20, 1,'Masculino');
 
 INSERT INTO Produto (descricao, tamanho, preco_custo, quantidade, id_categoria) 
-    VALUES ('Pandora', 'A', 12.90, 12, 2);
+    VALUES ('Pandora', 'PP', 12.90,40.32, 12, 2,'Feminino');
 
 -- -----------------------------------------------------
 -- Table `shirtCents`.`FormaPagamento`
