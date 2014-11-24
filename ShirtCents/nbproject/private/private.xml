@@ -2,6 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/victor/NetBeansProjects/ShirtCents/ShirtCents/web/resources/css/cssLayout.css</file>
+            <file>file:/home/victor/NetBeansProjects/ShirtCents/ShirtCents/web/usuario.xhtml</file>
+            <file>file:/home/victor/NetBeansProjects/ShirtCents/ShirtCents/web/modeloPadrao.xhtml</file>
+        </group>
     </open-files>
 </project-private>

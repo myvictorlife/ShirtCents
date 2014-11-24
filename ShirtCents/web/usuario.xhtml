@@ -8,10 +8,7 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-
-        <p:layout >
-            <p:layoutUnit position="west" resizable="false" size="400" >
-                <p:panelGrid id="panelUsuario" >
+      
                     <h3 id="principal">Cadastro</h3>
                     <h:form prependId="false" >
 
@@ -36,11 +33,7 @@
                         <p:commandButton value="Limpar" action="#{usuarioBean.novo()}" ajax="false"></p:commandButton>
 
                     </h:form>
-                </p:panelGrid>
-            </p:layoutUnit>
-
-            <p:layoutUnit position="center">
-                <h:panelGrid id="listUsuario">
+          
 
                     <f:view>
                         <h:form>
@@ -117,11 +110,6 @@
 
                     </f:view>
 
-                </h:panelGrid>
-
-
-            </p:layoutUnit>
-        </p:layout>
 
 
     </ui:define>
