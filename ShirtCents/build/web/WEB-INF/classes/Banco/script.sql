@@ -55,6 +55,7 @@ CREATE TABLE Produto (
   descricao VARCHAR(45),
   tamanho VARCHAR(10),
   preco_custo DOUBLE,
+  preco_venda DOUBLE,
   quantidade INT,
   id_categoria INT NOT NULL,
   PRIMARY KEY (id_produto),
