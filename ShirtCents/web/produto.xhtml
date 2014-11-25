@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./modeloPadrao.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <p:growl id="message" showDetail="true" />
+        <f:view>
+            <h3 id="principal">Cadastro de produto</h3>
+            <h:form id="formProduto">
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Descricao:" for="descricao" />
+                    <p:inputText id="descricao" value="#{produtoBean.produto.descricao}" title="Descricao" required="true" requiredMessage="Campo descrição é obrigatório " />
+                    <p:outputLabel value="Tamanho:" for="tamanho" />
+                    <p:inputText id="tamanho" value="#{produtoBean.produto.tamanho}" title="Tamanho" required="true" requiredMessage="Campo tamanho é obrigatório"/>
+                    <p:outputLabel value="Preco de Custo:" for="precoCusto" />
+                    <p:inputText id="precoCusto" value="#{produtoBean.produto.precoCusto}" title="PrecoCusto" required="true" requiredMessage="Campo preço de custo é obrigatório" />
+                    <p:outputLabel value="Preco de Venda:" for="precoVenda" />
+                    <p:inputText id="precoVenda" value="#{produtoBean.produto.precoVenda}" title="PrecoVenda" required="true" requiredMessage="Campo preço de venda é obrigatório"/>
+                    <p:outputLabel value="Quantidade:" for="quantidade" />
+                    <p:inputText id="quantidade" value="#{produtoBean.produto.quantidade}" title="Quantidade" required="true" requiredMessage="Campo quantidade é obrigatório"/>
+                    Sexo: *
+                    <p:selectOneRadio  value="#{produtoBean.produto.sexo}" required="true" requiredMessage="Campo sexo é obrigatório">
+                        <f:selectItem itemValue="0" itemLabel=" Masculino" />
+                        <f:selectItem itemValue="1"  itemLabel=" Feminino" />
+                        <f:selectItem itemValue="2"  itemLabel=" Unisex" />
+                    </p:selectOneRadio>
+                    <p:outputLabel value="Categoria:" for="idCategoria" />
+                    <p:selectOneMenu id="idCategoria" value="#{produtoBean.produto.idCategoria.idCategoria}" required="true" requiredMessage="Campo categoria é obrigatório">
+                        <f:selectItems value="#{produtoBean.categorias}" var="cat"
+                                       itemLabel="#{cat.categoria}"
+                                       itemValue="#{cat.idCategoria}"/>
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                <p:commandButton value="Cadastrar" action="#{produtoBean.salvar()}" update=":message formProduto" />
+                <p:commandButton value="Novo" action="#{produtoBean.novo()}" update="formProduto"/>
+            </h:form>
+
+        </f:view>
+
+    </ui:define>
+</ui:composition>
+

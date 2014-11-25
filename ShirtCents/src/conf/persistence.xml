@@ -3,6 +3,8 @@
   <persistence-unit name="ShirtCentsPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidades.Usuario</class>
+    <class>Entidades.Produto</class>
+    <class>Entidades.Categoria</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/shirtCents"/>
