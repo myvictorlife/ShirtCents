@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
+        <h:outputStylesheet name="./css/social-buttons.css"/>
         <h:outputScript library="js" name="funcoes.js" />
         <title>Facelets Template</title>
         <script>
@@ -21,7 +22,10 @@
                 $("#modalLink").click(function () {
                     PF('dlg').show();
                 });
+
             });
+
+
         </script>
     </h:head>
 
@@ -39,7 +43,7 @@
                     </b:navbarLinks>
 
                     <div class="nav navbar-nav pull-right">
-                        <b:navLink id="nomeUsuario" value="#{usuarioLogin.usuario.nome}"></b:navLink>
+                        <b:navLink id="nomeUsuario" href="login.xhtml" value="#{usuarioLogin.usuario.nome}"></b:navLink>
                         <b:navLink id="modalLink" value="Login" href="javascript:void(0)" icon="glyphicon glyphicon-log-out">
                         </b:navLink>
                         <div id="divLogin">
@@ -97,13 +101,26 @@
         <div id="bottom">
             <ui:insert name="bottom">
                 <b:well>
-                    <h3><strong>Footer</strong></h3>
-                    <h4>Desenvolvedores</h4>
-                    <h5>Victor César</h5>
-                    <h5>Pablo Ribeiro</h5>
-                    <h5>Pedro Henrique</h5>
-                    <h5>Gilberto Olimpio</h5>
-                    <h5>Guilherme Gomes</h5>
+
+
+                    
+                    <h:graphicImage library="img" name="facebook.png"  />
+                    <h:graphicImage library="img" name="twitter.png"  />
+
+
+
+                    <div class="navbar-inner navbar-content-center">
+
+                        <div style="text-align: center">
+                            <h:graphicImage library="img" name="ShirtCents-4.png"/>
+
+                        </div>
+
+                        <p class="text-muted credit center-footer" style="text-align: center">
+                            &copy; Powered by <a>ShirtCents Team | 2014</a> 
+                        </p>
+                    </div>
+
                 </b:well>
             </ui:insert>
         </div>
