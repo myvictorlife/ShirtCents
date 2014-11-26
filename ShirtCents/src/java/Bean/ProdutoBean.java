@@ -73,6 +73,7 @@ public class ProdutoBean {
     public void salvar(){
         modificaOpcaoRadio();
         salvarProduto();
+        novo();
     }
 
     private void salvarProduto() {
@@ -87,7 +88,7 @@ public class ProdutoBean {
             emTx.commit();
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ", "Produto salvo com sucesso! " + new java.util.Date()));
-    
+            
         }catch(Exception ex) {
             try {
                 emTx.rollback();
