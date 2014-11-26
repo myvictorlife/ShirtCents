@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./modeloTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile"
+                xmlns:b="http://bootsfaces.net/ui">
+
+
+
+    <ui:define name="center">
+        <b:well>
+            <b:row styleClass="show-grid">
+                <b:column col-xs="6" col-md="2">
+                    
+                    <b:buttonGroup orientation="vertical">
+                        <b:button value="Usuario" outcome="usuario" />
+                        <b:button value="Produto" outcome="produto" />
+                        <b:button value="Categoria" outcome="categoria" />
+                        <b:button value="Teste Login"  outcome="login" />
+                        <b:button value="Sair" outcome="index" />
+                    </b:buttonGroup>
+                </b:column>
+                <b:column col-xs="12" col-md="8">
+                    Produtos
+                </b:column>
+            </b:row>
+        </b:well>
+    </ui:define>
+
+</ui:composition>
+
+

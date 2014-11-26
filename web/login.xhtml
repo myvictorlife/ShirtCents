@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./modeloTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="center">
+
+        <b:row styleClass="show-grid">
+
+            <b:column col-xs="6" col-md="2" >
+                <b:well>
+                    <b:buttonGroup orientation="vertical">
+                        <b:button value="Usuario" outcome="usuario" />
+                        <b:button value="Cliente" outcome="cliente" />
+                        <b:button value="Produto" outcome="cliente" />
+                        <b:button value="Categoria" outcome="cliente" />
+                        <b:button value="Teste Login"  outcome="login" />
+                        <h:form prependId="false">
+                            <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
+                        </h:form>
+                    </b:buttonGroup>
+                </b:well>
+
+            </b:column>
+
+            <b:column col-xs="12" col-md="8">
+                <b:well>
+                    <h:form>
+                        <p:panelGrid columns="2" >
+                            <p:outputLabel value="Nome Completo:" for="tNome"/>
+                            <p:inputText id="tNome" value="#{usuarioLogin.usuario.nome}" />
+                            <p:outputLabel value="Email:" for="tEmail"/>
+                            <p:inputText id="tEmail" value="#{usuarioLogin.usuario.email}" />
+                            <p:outputLabel value="User:" for="tUser"/>
+                            <p:inputText id="tUser" value="#{usuarioLogin.usuario.login}" />
+                            <p:outputLabel value="Senha:" for="tSenha"/>
+                            <p:inputText id="tSenha" value="#{usuarioLogin.usuario.senha}" />
+                            <p:outputLabel value="Profile:" for="tProfile"/>
+                            <p:inputText id="tProfile" value="#{usuarioLogin.usuario.profile}" />
+
+                        </p:panelGrid>
+                    </h:form>
+                </b:well>
+            </b:column>
+
+        </b:row>
+
+    </ui:define>
+
+
+</ui:composition>
+

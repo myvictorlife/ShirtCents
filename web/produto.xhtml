@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./modeloTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="center">
+        <b:well>
+            <b:row styleClass="show-grid">
+                <b:column col-xs="6" col-md="2">
+                    <b:buttonGroup orientation="vertical">
+                        <b:button value="Usuario" outcome="usuario" />
+                        <b:button value="Produto" outcome="produto" />
+                        <b:button value="Categoria" outcome="categoria" />
+                        <b:button value="Teste Login"  outcome="login" />
+                        <b:button value="Sair" outcome="index" />
+                    </b:buttonGroup>
+                </b:column>
+                <b:column col-xs="12" col-md="8">
+                    <h2>Cadastro de produtos</h2>
+                    <h:form>
+                        <p:growl id="message" showDetail="true" />
+
+                        <p:panelGrid columns="2" >
+                            <p:outputLabel value="Descrição:" for="tDescricao"/>
+                            <p:inputText id="tDescricao" value="#{produtoBean.produto.descricao}" />
+
+                            <p:outputLabel value="Tamanho:" for="tTamanho"/>
+                            <p:inputText id="tTamanho" value="#{produtoBean.produto.tamanho}"  />
+
+                            <p:outputLabel value="Quantidade:" for="tQuantidade"/>
+                            <p:inputText id="tQuantidade" value="#{produtoBean.produto.quantidade}"  />
+
+                            <p:outputLabel value="Preço de custo:" for="tPrecoCusto"/>
+                            <p:inputText id="tPrecoCusto" value="#{produtoBean.produto.precoCusto}"  />
+
+                            <p:outputLabel value="Preço de venda:" for="tPrecoVenda"/>
+                            <p:inputText id="tPrecoVenda" value="#{produtoBean.produto.precoVenda}"  />
+
+                            <p:outputLabel value="Sexo:"/>
+                            <h:selectOneRadio value="#{produtoBean.produto.sexo}" required="true" requiredMessage="Campo Sexo é obrigatório">
+                                <f:selectItem itemValue="0" itemLabel=" Masculino" />
+                                <f:selectItem itemValue="1"  itemLabel=" Feminino" />
+                                <f:selectItem itemValue="2"  itemLabel=" Unisex" />
+                            </h:selectOneRadio>
+
+                            <p:outputLabel value="Categoria:" />
+                            <h:selectOneMenu id="idCategoria" value="#{produtoBean.produto.idCategoria.idCategoria}" required="true" requiredMessage="Campo categoria é obrigatório">
+                                <f:selectItems value="#{produtoBean.categorias}" var="cat"
+                                               itemLabel="#{cat.categoria}"
+                                               itemValue="#{cat.idCategoria}"/>
+                            </h:selectOneMenu>
+                        </p:panelGrid>
+
+                        <b:commandButton value="Salvar" action="#{produtoBean.salvar()}" icon="envelope"/>
+                        <b:commandButton value="Limpar" action="#{produtoBean.novo()}" />
+                        
+
+                    </h:form>
+
+                </b:column>
+            </b:row>
+        </b:well>
+    </ui:define>
+
+</ui:composition>
+
+
