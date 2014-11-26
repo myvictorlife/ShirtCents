@@ -18,7 +18,9 @@
                         <b:button value="Produto" outcome="produto" />
                         <b:button value="Categoria" outcome="categoria" />
                         <b:button value="Teste Login"  outcome="login" />
-                        <b:button value="Sair" outcome="index" />
+                        <h:form prependId="false">
+                            <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
+                        </h:form>
                     </b:buttonGroup>
                 </b:column>
                 <b:column col-xs="12" col-md="8">
@@ -59,7 +61,7 @@
 
                         <b:commandButton value="Salvar" action="#{produtoBean.salvar()}" icon="envelope"/>
                         <b:commandButton value="Limpar" action="#{produtoBean.novo()}" />
-                        
+
 
                     </h:form>
 

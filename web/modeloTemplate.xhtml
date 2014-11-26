@@ -39,7 +39,7 @@
                     </b:navbarLinks>
 
                     <div class="nav navbar-nav pull-right">
-
+                        <b:navLink id="nomeUsuario" value="#{usuarioLogin.usuario.nome}"></b:navLink>
                         <b:navLink id="modalLink" value="Login" href="javascript:void(0)" icon="glyphicon glyphicon-log-out">
                         </b:navLink>
                         <div id="divLogin">
@@ -81,7 +81,9 @@
                                 <b:button value="Produto" outcome="produto" />
                                 <b:button value="Categoria" outcome="categoria" />
                                 <b:button value="Teste Login"  outcome="login" />
-                                <b:button value="Sair" outcome="index" />
+                                <h:form prependId="false">
+                                    <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
+                                </h:form>
                             </b:buttonGroup>
                         </b:column>
                         <b:column col-xs="12" col-md="8">
