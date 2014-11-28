@@ -59,6 +59,7 @@ CREATE TABLE Categoria (
   quantidade INT,
   SEXO VARCHAR(10),
   id_categoria INT NOT NULL,
+  foto varchar(50),
   PRIMARY KEY (id_produto),
   FOREIGN KEY (id_categoria) REFERENCES Categoria (id_categoria)
    );

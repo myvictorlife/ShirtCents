@@ -6,10 +6,10 @@
     <class>entidades.Formapagamento</class>
     <class>entidades.Usuario</class>
     <class>entidades.Cliente</class>
-    <class>entidades.Produto</class>
     <class>entidades.Categoria</class>
     <class>entidades.Endereco</class>
     <class>entidades.Itens</class>
+    <class>entidades.Produto</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/shirtCents"/>

@@ -3,6 +3,7 @@ package bean;
 
 import entidades.Categoria;
 import entidades.Produto;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -11,21 +12,35 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.servlet.http.Part;
 import util.JpaUtil;
+import util.Upload;
 
 
 @ManagedBean
 @RequestScoped
 public class ProdutoBean {
 
-   private Produto produto = new Produto();
+    private Produto produto = new Produto();
     private List<Categoria> categorias = new ArrayList<>();
+    private Part uploadFoto;
+
     
-    
-    public ProdutoBean() {
+    public ProdutoBean(){
         carregaCategoria();
     }
 
+    public Part getUploadFoto() {
+        return uploadFoto;
+    }
+
+    public void setUploadFoto(Part uploadFoto) {
+        this.uploadFoto = uploadFoto;
+    }
+
+
+
+    
     public Produto getProduto() {
         return produto;
     }
@@ -68,6 +83,9 @@ public class ProdutoBean {
         salvarProduto();
         novo();
     }
+    
+   
+
 
     private void salvarProduto() {
         EntityManager em = null;

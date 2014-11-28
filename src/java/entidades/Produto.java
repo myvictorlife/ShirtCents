@@ -6,9 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  *
- * @author victor
+ * @author pablo
  */
 @Entity
 @Table(name = "PRODUTO")
@@ -35,7 +32,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.findByPrecoCusto", query = "SELECT p FROM Produto p WHERE p.precoCusto = :precoCusto"),
     @NamedQuery(name = "Produto.findByPrecoVenda", query = "SELECT p FROM Produto p WHERE p.precoVenda = :precoVenda"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade"),
-    @NamedQuery(name = "Produto.findBySexo", query = "SELECT p FROM Produto p WHERE p.sexo = :sexo")})
+    @NamedQuery(name = "Produto.findBySexo", query = "SELECT p FROM Produto p WHERE p.sexo = :sexo"),
+    @NamedQuery(name = "Produto.findByFoto", query = "SELECT p FROM Produto p WHERE p.foto = :foto")})
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -56,11 +54,11 @@ public class Produto implements Serializable {
     private Integer quantidade;
     @Column(name = "SEXO")
     private String sexo;
+    @Column(name = "FOTO")
+    private String foto;
     @JoinColumn(name = "ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
-    private Categoria idCategoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
-    private Collection<Itens> itensCollection;
+    private Categoria idCategoria = new Categoria();
 
     public Produto() {
     }
@@ -125,20 +123,20 @@ public class Produto implements Serializable {
         this.sexo = sexo;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     public Categoria getIdCategoria() {
         return idCategoria;
     }
 
     public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
-    }
-
-    public Collection<Itens> getItensCollection() {
-        return itensCollection;
-    }
-
-    public void setItensCollection(Collection<Itens> itensCollection) {
-        this.itensCollection = itensCollection;
     }
 
     @Override

@@ -9,132 +9,102 @@
                 xmlns:pm="http://primefaces.org/mobile"
                 xmlns:b="http://bootsfaces.net/ui">
 
-    <ui:define name="center">
+    <ui:define name="right">
+
+        <h3 id="principal">Cadastro de Usuario</h3>
+        <h:form prependId="false" id="cadastroUsuario">
+
+            <p:panelGrid columns="2" >
+                <p:outputLabel value="Nome Completo" for="tNome"/>
+                <p:inputText id="tNome" value="#{usuarioBean.usuario.nome}" />
+                <p:outputLabel value="Email" for="tEmail"/>
+                <p:inputText id="tEmail" value="#{usuarioBean.usuario.email}" />
+                <p:outputLabel value="User" for="tUser"/>
+                <p:inputText id="tUser" value="#{usuarioBean.usuario.login}" />
+                <p:outputLabel value="Senha" for="tSenha"/>
+                <p:inputText id="tSenha" value="#{usuarioBean.usuario.senha}" />
+
+                <p:outputLabel value="Profile"/>
+                <p:selectOneRadio  value="#{usuarioBean.usuario.profile}">
+                    <f:selectItem itemValue="0" itemLabel=" Admin" />
+                    <f:selectItem itemValue="1"  itemLabel=" Leitor" />
+                </p:selectOneRadio>
+            </p:panelGrid>
+
+            <p:commandButton value="Cadastrar" actionListener="#{usuarioBean.salvar()}" update=":formListarUsuario :cadastroUsuario"></p:commandButton>
+            <p:commandButton value="Limpar" actionListener="#{usuarioBean.novo()}" update=":formListarUsuario :cadastroUsuario"></p:commandButton>
+
+        </h:form>
+
+        <p:separator/>
+
+            <h:form prependId="false" id="formListarUsuario">
+                <p:growl id="message" showDetail="true" />
+                <h3><h:outputText value="Usuários Cadastrados"/></h3>
+                <p:dataTable  value="#{usuarioBean.usuarios}" var="item" >
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Id"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nome}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Login"/>
+                        </f:facet>
+                        <h:outputText value="#{item.login}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Senha"/>
+                        </f:facet>
+                        <h:outputText value="#{item.senha}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Profile"/>
+                        </f:facet>
+                        <h:outputText value="#{item.profile}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Apagar"/>
+                        </f:facet>
 
 
-        <b:row styleClass="show-grid">
+                        <b:commandButton value="" icon="glyphicon glyphicon-trash" actionListener="#{usuarioBean.apagar()}" update=":formListarUsuario :cadastroUsuario">
+                            <f:setPropertyActionListener value="#{item}" target="#{usuarioBean.usuario}" />
+                            <p:confirm header="Confirmaçao" message="Deseja apagar?" icon="ui-icon-alert" />
+                        </b:commandButton>
+                    </p:column>
 
-            <b:column col-xs="6" col-md="2">
-                <b:well>
-                    <b:buttonGroup orientation="vertical">
-                        <b:button value="Usuario" outcome="usuario" />
-                        <b:button value="Produto" outcome="produto" />
-                        <b:button value="Categoria" outcome="categoria" />
-                        <b:button value="Teste Login"  outcome="login" />
-                        <h:form prependId="false">
-                            <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
-                        </h:form>
-                    </b:buttonGroup>
-                </b:well>    
-            </b:column>
-            <b:column col-xs="12" col-md="10">
-                <b:well>
-                    <b:row styleClass="show-grid">
-                        <b:column col-xs="4">
-                            <h3 id="principal">Cadastro</h3>
-                            <h:form prependId="false" id="cadastroUsuario">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Editar"/>
+                        </f:facet>
+                        <b:commandButton icon="glyphicon glyphicon-pencil" value="" update=":cadastroUsuario">
+                            <f:setPropertyActionListener value="#{item}" target="#{usuarioBean.usuario}" />
+                        </b:commandButton>
+                    </p:column>
 
-                                <p:panelGrid columns="2" >
-                                    <p:outputLabel value="Nome Completo:" for="tNome"/>
-                                    <p:inputText id="tNome" value="#{usuarioBean.usuario.nome}" />
-                                    <p:outputLabel value="Email:" for="tEmail"/>
-                                    <p:inputText id="tEmail" value="#{usuarioBean.usuario.email}" />
-                                    <p:outputLabel value="User:" for="tUser"/>
-                                    <p:inputText id="tUser" value="#{usuarioBean.usuario.login}" />
-                                    <p:outputLabel value="Senha:" for="tSenha"/>
-                                    <p:inputText id="tSenha" value="#{usuarioBean.usuario.senha}" />
+                </p:dataTable>
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
 
-                                    Profile:
-                                    <p:selectOneRadio  value="#{usuarioBean.usuario.profile}">
-                                        <f:selectItem itemValue="0" itemLabel=" Admin" />
-                                        <f:selectItem itemValue="1"  itemLabel=" Leitor" />
-                                    </p:selectOneRadio>
-                                </p:panelGrid>
+            </h:form>
 
-                                <p:commandButton value="Cadastrar" actionListener="#{usuarioBean.salvar()}" update=":formListarUsuario :cadastroUsuario"></p:commandButton>
-                                <p:commandButton value="Limpar" actionListener="#{usuarioBean.novo()}" update=":formListarUsuario :cadastroUsuario"></p:commandButton>
-
-                            </h:form>
-                        </b:column>
-
-
-                        <b:column col-md="8">
-                            <f:view>
-                                <h:form prependId="false" id="formListarUsuario">
-                                    <p:growl id="message" showDetail="true" />
-                                    <h3><h:outputText value="Usuários Cadastrados"/></h3>
-                                    <p:dataTable  value="#{usuarioBean.usuarios}" var="item" >
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Id"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.id}"/>
-                                        </p:column>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Nome"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.nome}"/>
-                                        </p:column>
-
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Login"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.login}"/>
-                                        </p:column>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Senha"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.senha}"/>
-                                        </p:column>
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Profile"/>
-                                            </f:facet>
-                                            <h:outputText value="#{item.profile}"/>
-                                        </p:column>
-
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Apagar"/>
-                                            </f:facet>
-
-
-                                            <b:commandButton value="" icon="glyphicon glyphicon-trash" actionListener="#{usuarioBean.apagar()}" update=":formListarUsuario :cadastroUsuario">
-                                                <f:setPropertyActionListener value="#{item}" target="#{usuarioBean.usuario}" />
-                                                <p:confirm header="Confirmaçao" message="Deseja apagar?" icon="ui-icon-alert" />
-                                            </b:commandButton>
-                                        </p:column>
-
-                                        <p:column>
-                                            <f:facet name="header">
-                                                <h:outputText value="Editar"/>
-                                            </f:facet>
-                                            <b:commandButton icon="glyphicon glyphicon-pencil" value="" update=":cadastroUsuario">
-                                                <f:setPropertyActionListener value="#{item}" target="#{usuarioBean.usuario}" />
-                                            </b:commandButton>
-                                        </p:column>
-
-                                    </p:dataTable>
-                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                    </p:confirmDialog>
-
-                                </h:form>
-
-                            </f:view>
-                        </b:column>
-                    </b:row>
-
-                </b:well>
-
-            </b:column>
-        </b:row>
     </ui:define>
-
+    
 
 
 </ui:composition>
