@@ -16,6 +16,8 @@
         <h:outputStylesheet name="./css/cssLayout.css"/>
         <h:outputStylesheet name="./css/social-buttons.css"/>
         <h:outputScript library="js" name="funcoes.js" />
+        <h:outputScript library="js" name="jqFancyTransitions.js" />
+
         <title>Facelets Template</title>
         <script>
             $(document).ready(function () {
@@ -23,8 +25,10 @@
                     PF('dlg').show();
                 });
 
-            });
+                $("#placeHolderID").jqFancyTransitions();
 
+
+            });
 
         </script>
     </h:head>
@@ -43,7 +47,9 @@
                     </b:navbarLinks>
 
                     <div class="nav navbar-nav pull-right">
+                        
                         <b:navLink id="nomeUsuario" href="login.xhtml" value="#{usuarioLogin.usuario.nome}"></b:navLink>
+                        
                         <b:navLink id="modalLink" value="Login" href="javascript:void(0)" icon="glyphicon glyphicon-log-out">
                         </b:navLink>
                         <div id="divLogin">
@@ -64,12 +70,17 @@
                         </div>
                     </div>
                 </b:navBar>
-                <b:jumbotron>
-                    <b:container>
-                        <h1 style="text-align: center">ShirtCents!</h1>
-                    </b:container>
+                <b:well>
 
-                </b:jumbotron>
+                    <div id='placeHolderID'>
+                        <h:graphicImage library="img" name="ShirtCents1.png"/>
+                        <h:graphicImage library="img" name="ShirtCents2.png"/>
+                        <h:graphicImage library="img" name="ShirtCents3.png"/>
+                        <h:graphicImage library="img" name="ShirtCents4.png"/>
+                    </div>
+
+                </b:well>
+
 
             </ui:insert>
         </div>
@@ -91,7 +102,10 @@
                             </b:buttonGroup>
                         </b:column>
                         <b:column col-xs="12" col-md="8">
-                            Produtos
+                            <div id="bottom">
+                                <ui:insert name="bottom">
+                                </ui:insert>
+                            </div>
                         </b:column>
                     </b:row>
                 </b:well>
@@ -103,9 +117,12 @@
                 <b:well>
 
 
-                    
-                    <h:graphicImage library="img" name="facebook.png"  />
-                    <h:graphicImage library="img" name="twitter.png"  />
+                    <a href="http://www.facebook.com" target="_blanck">
+                        <h:graphicImage library="img" name="facebook.png"  />
+                    </a> 
+                    <a href="https://twitter.com/" target="_blanck">
+                        <h:graphicImage library="img" name="twitter.png"  />
+                    </a>
 
 
 

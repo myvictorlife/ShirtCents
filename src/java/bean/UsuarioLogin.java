@@ -14,7 +14,7 @@ import util.JpaUtil;
 @SessionScoped
 public class UsuarioLogin {
     
-    private Usuario usuario = new Usuario();
+    private Usuario usuario = null;
 
     public UsuarioLogin() {
     }
@@ -24,10 +24,11 @@ public class UsuarioLogin {
         if(session != null) {
             session.invalidate();
         }    
-        usuario = new Usuario();
+        usuario = null;
     }
     
     public void entrar(){
+        usuario = new Usuario();
         EntityManager manager = null;
         try {
             manager = JpaUtil.getEntityManager();  //acesso ao banco
@@ -55,10 +56,8 @@ public class UsuarioLogin {
         } finally {
             JpaUtil.closeEntityManager(manager); //fecha acesso ao banco
         }
-        
         System.out.println("Nome: " + usuario.getNome());
         System.out.println("Email: " + usuario.getEmail());
-        System.out.println("Senha: " + usuario.getSenha());
         System.out.println("Profile: " + usuario.getProfile());
         //return null;
     }

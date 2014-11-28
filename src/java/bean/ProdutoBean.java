@@ -13,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import util.JpaUtil;
 
+
 @ManagedBean
 @RequestScoped
 public class ProdutoBean {
