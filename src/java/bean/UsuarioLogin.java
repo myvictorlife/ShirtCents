@@ -14,8 +14,9 @@ import util.JpaUtil;
 @SessionScoped
 public class UsuarioLogin {
     
-    private Usuario usuario = null;
+    private Usuario usuario = new Usuario();
 
+    
     public UsuarioLogin() {
     }
     
@@ -24,11 +25,10 @@ public class UsuarioLogin {
         if(session != null) {
             session.invalidate();
         }    
-        usuario = null;
+        usuario = new Usuario();
     }
     
     public void entrar(){
-        usuario = new Usuario();
         EntityManager manager = null;
         try {
             manager = JpaUtil.getEntityManager();  //acesso ao banco
