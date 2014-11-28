@@ -44,18 +44,18 @@
                                    itemLabel="#{cat.categoria}"
                                    itemValue="#{cat.idCategoria}"/>
                 </h:selectOneMenu>
-                
-                <p:fileUpload fileUploadListener="#{produtoBean.uploadFoto}"    
-                    mode="advanced"     
-                    update="message"    
-                    sizeLimit="5000000"     
-                    allowTypes="/(\.|\/)(gif|jpe?g|png|pdf)$/"/> 
+
+                <p:fileUpload fileUploadListener="#{produtoBean.upload}"
+                              mode="advanced" 
+                              update="message"
+                              sizeLimit="100000" 
+                              allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
 
 
 
             </p:panelGrid>
             <br/>
-            <b:commandButton value="Salvar" action="#{produtoBean.salvar()}" icon="envelope"/><tr/>
+            <b:commandButton value="Salvar"  action="#{produtoBean.salvar()}" icon="envelope"/><tr/>
             <b:commandButton value="Limpar" action="#{produtoBean.novo()}" />
 
         </h:form>

@@ -1,4 +1,3 @@
-
 package bean;
 
 import entidades.Categoria;
@@ -14,11 +13,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import util.JpaUtil;
 import util.Upload;
-
 
 @ManagedBean
 @RequestScoped
@@ -26,25 +25,14 @@ public class ProdutoBean {
 
     private Produto produto = new Produto();
     private List<Categoria> categorias = new ArrayList<>();
-    private UploadedFile uploadFoto;
 
-    
-    public ProdutoBean(){
+
+    public ProdutoBean() {
         carregaCategoria();
     }
 
-    public UploadedFile getUploadFoto() {
-        return uploadFoto;
-    }
-
-    public void setUploadFoto(UploadedFile uploadFoto) {
-        this.uploadFoto = uploadFoto;
-    }
 
 
-
-
-    
     public Produto getProduto() {
         return produto;
     }
@@ -63,53 +51,58 @@ public class ProdutoBean {
 
     private void carregaCategoria() {
         EntityManager em = null;
-        try{
-        em = JpaUtil.getEntityManager();
-        this.categorias = em.createNamedQuery("Categoria.findAll").getResultList();
-        
-        JpaUtil.closeEntityManager(em);
-        }catch(Exception e){
+        try {
+            em = JpaUtil.getEntityManager();
+            this.categorias = em.createNamedQuery("Categoria.findAll").getResultList();
+
+            JpaUtil.closeEntityManager(em);
+        } catch (Exception e) {
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", e.getMessage()));
         }
     }
-    public void modificaOpcaoRadio(){
-        if(produto.getSexo().equals(String.valueOf(0))){
+
+    public void modificaOpcaoRadio() {
+        if (produto.getSexo().equals(String.valueOf(0))) {
             produto.setSexo("Masculino");
-        }else if(produto.getSexo().equals(String.valueOf(1))) 
+        } else if (produto.getSexo().equals(String.valueOf(1))) {
             produto.setSexo("Feminino");
-        else{
+        } else {
             produto.setSexo("Unisex");
         }
     }
-    public void salvar(){
-        upload();
+
+    public void salvar() {
+
         modificaOpcaoRadio();
         salvarProduto();
         novo();
     }
-    public void upload(){
-        this.produto.setFoto(uploadFoto.getContents());
-        
+
+    public void upload(FileUploadEvent event) {
+
+        System.out.println(event.getFile().getContents());
+        this.produto.setFoto(event.getFile().getContents());
+
     }
-  
+
     private void salvarProduto() {
         EntityManager em = null;
         EntityTransaction emTx = null;
-        try{
+        try {
             em = JpaUtil.getEntityManager();
             emTx = em.getTransaction();
             emTx.begin();
             this.produto = em.merge(this.produto);
-            
+
             emTx.commit();
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ", "Produto salvo com sucesso! " + new java.util.Date()));
-            
-        }catch(Exception ex) {
+
+        } catch (Exception ex) {
             try {
                 emTx.rollback();
-            } catch (Exception ex2){ 
+            } catch (Exception ex2) {
                 ex2.printStackTrace();
             }
             FacesContext.getCurrentInstance()
@@ -119,10 +112,9 @@ public class ProdutoBean {
         }
         novo();
     }
-    
-    public void novo(){
+
+    public void novo() {
         this.produto = new Produto();
     }
 
- 
 }
