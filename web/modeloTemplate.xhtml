@@ -47,9 +47,9 @@
                     </b:navbarLinks>
 
                     <div class="nav navbar-nav pull-right">
-                        
+
                         <b:navLink id="nomeUsuario" href="login.xhtml" value="#{usuarioLogin.usuario.nome}"></b:navLink>
-                        
+
                         <b:navLink id="modalLink" value="Login" href="javascript:void(0)" icon="glyphicon glyphicon-log-out">
                         </b:navLink>
                         <div id="divLogin">
@@ -91,21 +91,26 @@
 
                     <b:row styleClass="show-grid">
                         <b:column col-xs="6" col-md="2">
-                            <b:buttonGroup orientation="vertical">
-                                <b:button value="Usuario" outcome="usuario" />
-                                <b:button value="Produto" outcome="produto" />
-                                <b:button value="Categoria" outcome="categoria" />
-                                <b:button value="Teste Login"  outcome="login" />
-                                <h:form prependId="false">
-                                    <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
-                                </h:form>
-                            </b:buttonGroup>
+                            <b:well>
+                                <b:buttonGroup orientation="vertical">
+                                    <b:button value="Usuario" outcome="usuario" />
+                                    <b:button value="Produto" outcome="produto" />
+                                    <b:button value="Categoria" outcome="categoria" />
+                                    <b:button value="Teste Login"  outcome="login" />
+                                    <h:form prependId="false">
+                                        <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
+                                    </h:form>
+                                </b:buttonGroup>
+                            </b:well>
                         </b:column>
+                        
                         <b:column col-xs="12" col-md="8">
-                            <div id="bottom">
-                                <ui:insert name="bottom">
+                            <b:well>
+                            <div id="right">
+                                <ui:insert name="right">
                                 </ui:insert>
                             </div>
+                            </b:well>
                         </b:column>
                     </b:row>
                 </b:well>

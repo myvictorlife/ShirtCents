@@ -8,24 +8,10 @@
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:pm="http://primefaces.org/mobile"
                 xmlns:b="http://bootsfaces.net/ui">
-    
-    <ui:define name="center">
-        <b:well>
-            <b:row styleClass="show-grid">
-                <b:column col-xs="6" col-md="2">
-                    
-                    <b:buttonGroup orientation="vertical">
-                        <b:button value="Usuario" outcome="usuario" />
-                        <b:button value="Produto" outcome="produto" />
-                        <b:button value="Categoria" outcome="categoria" />
-                        <b:button value="Teste Login"  outcome="login" />
-                        <h:form prependId="false">
-                            <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
-                        </h:form>
-                    </b:buttonGroup>
-                </b:column>
-                <b:column col-xs="12" col-md="8">
-                     <p:growl id="message" showDetail="true" />
+
+    <ui:define name="right">
+
+        <p:growl id="message" showDetail="true" />
         <f:view>
             <h:form id="formGeral">
                 <h1>Cadastro de categoria</h1>
@@ -41,7 +27,7 @@
 
         </f:view>
         <p:separator/>
-        
+
         <f:view>
             <h:form id="formTbCategoria">
                 <h1>Categorias existentes</h1>
@@ -79,9 +65,7 @@
             </h:form>
         </f:view>
 
-                </b:column>
-            </b:row>
-        </b:well>
+
     </ui:define>
-    
+
 </ui:composition>

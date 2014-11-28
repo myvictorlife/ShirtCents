@@ -9,14 +9,16 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import net.bootsfaces.component.NavBarLinks;
 import util.JpaUtil;
 
 @ManagedBean
 @RequestScoped
 public class CategoriaBean {
 
-   private Categoria categoria = new Categoria();
+    private Categoria categoria = new Categoria();
     private List<Categoria> categorias = new ArrayList<>();
+    
 
     public Categoria getCategoria() {
         return categoria;
