@@ -3,7 +3,7 @@ package bean;
 
 import entidades.Categoria;
 import entidades.Produto;
-import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -12,7 +12,10 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.servlet.ServletContext;
 import javax.servlet.http.Part;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import util.JpaUtil;
 import util.Upload;
 
@@ -23,20 +26,21 @@ public class ProdutoBean {
 
     private Produto produto = new Produto();
     private List<Categoria> categorias = new ArrayList<>();
-    private Part uploadFoto;
+    private UploadedFile uploadFoto;
 
     
     public ProdutoBean(){
         carregaCategoria();
     }
 
-    public Part getUploadFoto() {
+    public UploadedFile getUploadFoto() {
         return uploadFoto;
     }
 
-    public void setUploadFoto(Part uploadFoto) {
+    public void setUploadFoto(UploadedFile uploadFoto) {
         this.uploadFoto = uploadFoto;
     }
+
 
 
 
@@ -79,14 +83,16 @@ public class ProdutoBean {
         }
     }
     public void salvar(){
+        upload();
         modificaOpcaoRadio();
         salvarProduto();
         novo();
     }
-    
-   
-
-
+    public void upload(){
+        this.produto.setFoto(uploadFoto.getContents());
+        
+    }
+  
     private void salvarProduto() {
         EntityManager em = null;
         EntityTransaction emTx = null;
@@ -117,5 +123,6 @@ public class ProdutoBean {
     public void novo(){
         this.produto = new Produto();
     }
-    
+
+ 
 }

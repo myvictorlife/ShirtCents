@@ -44,8 +44,8 @@
                                    itemLabel="#{cat.categoria}"
                                    itemValue="#{cat.idCategoria}"/>
                 </h:selectOneMenu>
-
-                <p:fileUpload fileUploadListener="#{fileUploadController.upload}"    
+                
+                <p:fileUpload fileUploadListener="#{produtoBean.uploadFoto}"    
                     mode="advanced"     
                     update="message"    
                     sizeLimit="5000000"     

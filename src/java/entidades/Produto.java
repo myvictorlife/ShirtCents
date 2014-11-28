@@ -55,7 +55,7 @@ public class Produto implements Serializable {
     @Column(name = "SEXO")
     private String sexo;
     @Column(name = "FOTO")
-    private String foto;
+    private byte[] foto;
     @JoinColumn(name = "ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
     private Categoria idCategoria = new Categoria();
@@ -123,11 +123,11 @@ public class Produto implements Serializable {
         this.sexo = sexo;
     }
 
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 
