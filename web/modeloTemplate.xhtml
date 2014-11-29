@@ -45,7 +45,7 @@
                         <b:navLink value="Pulseiras" href="#"></b:navLink>
 
                     </b:navbarLinks>
-
+                   
                     <div class="nav navbar-nav pull-right">
 
                         <b:navLink id="nomeUsuario" href="login.xhtml" value="#{usuarioLogin.usuario.nome}"></b:navLink>
@@ -59,9 +59,9 @@
 
                                 <p:dialog header="Login" widgetVar="dlg" resizable="false" id="dialogLogin">
                                     <h:panelGrid columns="2" cellpadding="5">
-                                        <h:outputLabel for="username" value="Username:" />
+                                        <p:outputLabel for="username" value="Username:" />
                                         <p:inputText id="username" value="#{usuarioLogin.usuario.login}" required="true" label="username" />
-                                        <h:outputLabel for="password" value="Password:" />
+                                        <p:outputLabel for="password" value="Password:" />
                                         <p:password id="password" value="#{usuarioLogin.usuario.senha}" required="true" label="password" />
                                         <p:commandButton value="Login" action="#{usuarioLogin.entrar()}" update="@all" />
                                     </h:panelGrid>
@@ -96,6 +96,8 @@
                                     <b:button value="Usuario" outcome="usuario" />
                                     <b:button value="Produto" outcome="produto" />
                                     <b:button value="Categoria" outcome="categoria" />
+                                    <b:button value="Buscar Produtos" outcome="busca-produto" />
+                                    <b:button value="Grafico de Produtos" outcome="grafico-produto" />
                                     <b:button value="Teste Login"  outcome="login" />
                                     <h:form prependId="false">
                                         <b:commandButton value="Sair" action="#{usuarioLogin.sair()}" update="@all" />
@@ -103,13 +105,13 @@
                                 </b:buttonGroup>
                             </b:well>
                         </b:column>
-                        
-                        <b:column col-xs="12" col-md="8">
+
+                        <b:column col-xs="12" col-md="10">
                             <b:well>
-                            <div id="right">
-                                <ui:insert name="right">
-                                </ui:insert>
-                            </div>
+                                <div id="right">
+                                    <ui:insert name="right">
+                                    </ui:insert>
+                                </div>
                             </b:well>
                         </b:column>
                     </b:row>

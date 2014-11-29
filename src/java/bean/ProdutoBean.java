@@ -10,27 +10,46 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.model.chart.PieChartModel;
 import util.JpaUtil;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class ProdutoBean {
 
     private Produto produto = new Produto();
     private List<Produto> produtos = new ArrayList<>();
+    private List<Produto> produtosBusca = new ArrayList<>();
     private List<Categoria> categorias = new ArrayList<>();
-
     private String buscaProduto = "";
+    private PieChartModel pieModel = new PieChartModel();
 
     public ProdutoBean() {
         carregaCategoria();
+        buscaProdutoPorNome();
+    }
+
+    public PieChartModel getPieModel() {
+        return pieModel;
+    }
+
+    public void setPieModel(PieChartModel pieModel) {
+        this.pieModel = pieModel;
+    }
+ 
+    public List<Produto> getProdutosBusca() {
+        return produtosBusca;
+    }
+
+    public void setProdutosBusca(List<Produto> produtosBusca) {
+        this.produtosBusca = produtosBusca;
     }
 
     public String getBuscaProduto() {
@@ -155,17 +174,20 @@ public class ProdutoBean {
         }
     }
 
+    public String buscaTop(){
+        buscaProdutoPorNome();
+        return "busca-produto";
+    }
     public void buscaProdutoPorNome() {
-        produtos = new ArrayList<>();
+
         EntityManager em = null;
         try {
             em = JpaUtil.getEntityManager();
 
-            produtos = em.createQuery("SELECT p FROM Produto p WHERE p.descricao like ':descricao'%")
-                    .setParameter("descricao", this.buscaProduto)
+            produtosBusca = em.createQuery("Select p from Produto p where UPPER(p.descricao) like UPPER(:descricao)")
+                    .setParameter("descricao", "%"+buscaProduto+"%")
                     .getResultList();
 
-            System.out.println(produtos.get(0).getDescricao());
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance()
@@ -177,4 +199,38 @@ public class ProdutoBean {
 
     }
 
+    public void listarProdutoGrafico(){
+        todosProdutos();
+        graficar(findAllProduto());
+    }
+    public void graficar(List<Produto> produuto){
+        pieModel = new PieChartModel();
+
+       for (Produto prod : produuto ) {
+          pieModel.set(prod.getDescricao(), prod.getPrecoVenda());
+       }
+        
+
+        pieModel.setTitle("Preços");
+        pieModel.setLegendPosition("e");
+        pieModel.setFill(false);
+        pieModel.setShowDataLabels(true);
+        pieModel.setDiameter(150);
+    }
+    public List<Produto> findAllProduto() {
+        produtos = new ArrayList<>();
+        EntityManager em = null;
+        try {
+            em = JpaUtil.getEntityManager();
+            return em.createNamedQuery("Produto.findAll").getResultList();
+            
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", e.getMessage()));
+
+        } finally {
+            JpaUtil.closeEntityManager(em);
+        }
+        return null;
+    }
 }
