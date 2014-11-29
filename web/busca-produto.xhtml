@@ -9,10 +9,13 @@
                 xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="right">
+        
         <h:form id="form-buscar">
-            <b:inputText/>
-            <b:commandButton value="Buscar"/>
-            
+            <p:inputText value="#{produtoBean.buscaProduto}"/>
+            <p:commandButton value="Buscar" actionListener="#{produtoBean.buscaProdutoPorNome()}"/>       
         </h:form>
+        <p:separator/>
+        
+        
     </ui:define>
 </ui:composition>

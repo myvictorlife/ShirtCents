@@ -19,21 +19,35 @@ import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.IOUtils;
 import util.JpaUtil;
 
-
 @ManagedBean
 @RequestScoped
 public class ProdutoBean {
 
-    private Produto produto ;
+    private Produto produto = new Produto();
+    private List<Produto> produtos = new ArrayList<>();
     private List<Categoria> categorias = new ArrayList<>();
 
+    private String buscaProduto = "";
 
     public ProdutoBean() {
-        produto = new Produto();
         carregaCategoria();
     }
 
+    public String getBuscaProduto() {
+        return buscaProduto;
+    }
 
+    public void setBuscaProduto(String buscaProduto) {
+        this.buscaProduto = buscaProduto;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
 
     public Produto getProduto() {
         return produto;
@@ -81,10 +95,10 @@ public class ProdutoBean {
     }
 
     public void upload(FileUploadEvent event) {
-       
+
         try {
             this.produto.setFoto(IOUtils.toByteArray(event.getFile().getInputstream()));
-             FacesContext.getCurrentInstance()
+            FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ", event.getFile().getFileName() + new java.util.Date()));
 
         } catch (IOException ex) {
@@ -123,6 +137,44 @@ public class ProdutoBean {
 
     public void novo() {
         this.produto = new Produto();
+    }
+
+    public void todosProdutos() {
+        produtos = new ArrayList<>();
+        EntityManager em = null;
+        try {
+            em = JpaUtil.getEntityManager();
+            this.produtos = em.createNamedQuery("Produto.findAll").getResultList();
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", e.getMessage()));
+
+        } finally {
+            JpaUtil.closeEntityManager(em);
+        }
+    }
+
+    public void buscaProdutoPorNome() {
+        produtos = new ArrayList<>();
+        EntityManager em = null;
+        try {
+            em = JpaUtil.getEntityManager();
+
+            produtos = em.createQuery("SELECT p FROM Produto p WHERE p.descricao like ':descricao'%")
+                    .setParameter("descricao", this.buscaProduto)
+                    .getResultList();
+
+            System.out.println(produtos.get(0).getDescricao());
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", e.getMessage()));
+
+        } finally {
+            JpaUtil.closeEntityManager(em);
+        }
+
     }
 
 }
