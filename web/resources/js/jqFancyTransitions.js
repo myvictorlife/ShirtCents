@@ -205,7 +205,7 @@
 
 	// default values
 	$.fn.jqFancyTransitions.defaults = {	
-		width: 1290, // width of panel
+		width: 1250, // width of panel
 		height: 190, // height of panel
 		strips: 30, // number of strips
 		delay: 5000, // delay between images in ms

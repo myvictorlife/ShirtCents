@@ -2,9 +2,12 @@ package bean;
 
 import entidades.Categoria;
 import entidades.Produto;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -13,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
+import org.apache.commons.io.IOUtils;
 import util.JpaUtil;
 
 
@@ -20,11 +24,12 @@ import util.JpaUtil;
 @RequestScoped
 public class ProdutoBean {
 
-    private Produto produto = new Produto();
+    private Produto produto ;
     private List<Categoria> categorias = new ArrayList<>();
 
 
     public ProdutoBean() {
+        produto = new Produto();
         carregaCategoria();
     }
 
@@ -70,16 +75,22 @@ public class ProdutoBean {
     }
 
     public void salvar() {
-
         modificaOpcaoRadio();
         salvarProduto();
         novo();
     }
 
     public void upload(FileUploadEvent event) {
+       
+        try {
+            this.produto.setFoto(IOUtils.toByteArray(event.getFile().getInputstream()));
+             FacesContext.getCurrentInstance()
+                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ", event.getFile().getFileName() + new java.util.Date()));
 
-        System.out.println(event.getFile().getContents());
-        this.produto.setFoto(event.getFile().getContents());
+        } catch (IOException ex) {
+            Logger.getLogger(ProdutoBean.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
 
     }
 

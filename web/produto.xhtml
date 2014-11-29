@@ -39,7 +39,7 @@
                 </h:selectOneRadio>
 
                 <p:outputLabel value="Categoria" />
-                <h:selectOneMenu id="idCategoria" value="#{produtoBean.produto.idCategoria.idCategoria}" required="true" requiredMessage="Campo categoria é obrigatório">
+                <h:selectOneMenu id="idCategoria" value="#{produtoBean.produto.idCategoria.idCategoria}" >
                     <f:selectItems value="#{produtoBean.categorias}" var="cat"
                                    itemLabel="#{cat.categoria}"
                                    itemValue="#{cat.idCategoria}"/>

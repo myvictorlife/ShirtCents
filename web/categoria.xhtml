@@ -35,21 +35,21 @@
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="ID"/>
+                            <p:outputLabel value="ID"/>
                         </f:facet>
-                        <h:outputText value="#{item.idCategoria}"/>
+                        <p:outputLabel value="#{item.idCategoria}"/>
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Categoria"/>
+                            <p:outputLabel value="Categoria"/>
                         </f:facet>
-                        <h:outputText value="#{item.categoria}"/>
+                        <p:outputLabel value="#{item.categoria}"/>
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Apagar"/>
+                            <p:outputLabel value="Apagar"/>
                         </f:facet>
                         <p:commandButton value="Apagar" action="#{categoriaBean.apagar()}" update=":formTbCategoria:tbCategorias :message" >
                             <f:setPropertyActionListener value="#{item}" target="#{categoriaBean.categoria}" />
