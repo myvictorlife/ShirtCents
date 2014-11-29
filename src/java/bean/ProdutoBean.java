@@ -11,13 +11,10 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.servlet.ServletContext;
-import javax.servlet.http.Part;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import util.JpaUtil;
-import util.Upload;
+
 
 @ManagedBean
 @RequestScoped
