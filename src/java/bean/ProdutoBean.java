@@ -34,6 +34,7 @@ public class ProdutoBean {
     public ProdutoBean() {
         carregaCategoria();
         buscaProdutoPorNome();
+        listarProdutoGrafico();
     }
 
     public PieChartModel getPieModel() {
@@ -201,36 +202,25 @@ public class ProdutoBean {
 
     public void listarProdutoGrafico(){
         todosProdutos();
-        graficar(findAllProduto());
+        graficar();
     }
-    public void graficar(List<Produto> produuto){
+    public void graficar(){
         pieModel = new PieChartModel();
-
-       for (Produto prod : produuto ) {
+        try {
+            
+        
+       for (Produto prod : this.produtos ) {
           pieModel.set(prod.getDescricao(), prod.getPrecoVenda());
        }
-        
 
         pieModel.setTitle("Preços");
         pieModel.setLegendPosition("e");
         pieModel.setFill(false);
         pieModel.setShowDataLabels(true);
         pieModel.setDiameter(150);
-    }
-    public List<Produto> findAllProduto() {
-        produtos = new ArrayList<>();
-        EntityManager em = null;
-        try {
-            em = JpaUtil.getEntityManager();
-            return em.createNamedQuery("Produto.findAll").getResultList();
-            
         } catch (Exception e) {
-            FacesContext.getCurrentInstance()
-                    .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", e.getMessage()));
-
-        } finally {
-            JpaUtil.closeEntityManager(em);
+            System.out.println(e);
         }
-        return null;
     }
+
 }
