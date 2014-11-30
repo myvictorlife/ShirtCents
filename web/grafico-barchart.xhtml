@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./modeloTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="right">
+        <h1>Grafico BarChart</h1>
+        <h:panelGrid columns="2" columnClasses="left,right" style="width:100%">
+            <p:chart type="bar" model="#{produtoBean.barModel}" style="width:400px;height:300px">
+                <p:ajax event="itemSelect" listener="#{produtoBean.itemSelect(event)}" />
+            </p:chart>  
+        </h:panelGrid>
+
+    </ui:define>
+</ui:composition>

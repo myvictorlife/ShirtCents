@@ -6,21 +6,26 @@
 package entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
- * @author pablo
+ * @author victor
  */
 @Entity
 @Table(name = "PRODUTO")
@@ -32,8 +37,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Produto.findByPrecoCusto", query = "SELECT p FROM Produto p WHERE p.precoCusto = :precoCusto"),
     @NamedQuery(name = "Produto.findByPrecoVenda", query = "SELECT p FROM Produto p WHERE p.precoVenda = :precoVenda"),
     @NamedQuery(name = "Produto.findByQuantidade", query = "SELECT p FROM Produto p WHERE p.quantidade = :quantidade"),
-    @NamedQuery(name = "Produto.findBySexo", query = "SELECT p FROM Produto p WHERE p.sexo = :sexo"),
-    @NamedQuery(name = "Produto.findByFoto", query = "SELECT p FROM Produto p WHERE p.foto = :foto")})
+    @NamedQuery(name = "Produto.findBySexo", query = "SELECT p FROM Produto p WHERE p.sexo = :sexo")})
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,8 +45,10 @@ public class Produto implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_PRODUTO")
     private Integer idProduto;
+    @Size(max = 45)
     @Column(name = "DESCRICAO")
     private String descricao;
+    @Size(max = 10)
     @Column(name = "TAMANHO")
     private String tamanho;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -52,13 +58,17 @@ public class Produto implements Serializable {
     private Double precoVenda;
     @Column(name = "QUANTIDADE")
     private Integer quantidade;
+    @Size(max = 10)
     @Column(name = "SEXO")
     private String sexo;
+    @Lob
     @Column(name = "FOTO")
-    private byte[] foto;
+    private Serializable foto;
     @JoinColumn(name = "ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
-    private Categoria idCategoria = new Categoria();
+    private Categoria idCategoria;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+    private List<Itens> itensList;
 
     public Produto() {
     }
@@ -123,11 +133,11 @@ public class Produto implements Serializable {
         this.sexo = sexo;
     }
 
-    public byte[] getFoto() {
+    public Serializable getFoto() {
         return foto;
     }
 
-    public void setFoto(byte[] foto) {
+    public void setFoto(Serializable foto) {
         this.foto = foto;
     }
 
@@ -137,6 +147,14 @@ public class Produto implements Serializable {
 
     public void setIdCategoria(Categoria idCategoria) {
         this.idCategoria = idCategoria;
+    }
+
+    public List<Itens> getItensList() {
+        return itensList;
+    }
+
+    public void setItensList(List<Itens> itensList) {
+        this.itensList = itensList;
     }
 
     @Override

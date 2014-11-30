@@ -87,6 +87,8 @@ CREATE TABLE Pedido (
   criado_pedido DATE,
   modificado_pedido DATE,
   id_usuario INT NOT NULL,
+  total DOUBLE,
+  data_ped date,
   FormaPagamento_id INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (id_usuario) REFERENCES Usuario (id),
@@ -98,10 +100,11 @@ CREATE TABLE Pedido (
 -- -----------------------------------------------------
 
 CREATE TABLE Itens (
-  quantidade DOUBLE,
+   quantidade int,
    valor_unitario DOUBLE,
    id_produto INT NOT NULL,
    Pedido_id INT NOT NULL,
+   valor DOUBLE,
    PRIMARY KEY (id_produto, Pedido_id),
    FOREIGN KEY (id_produto) REFERENCES Produto (id_produto),
    FOREIGN KEY (Pedido_id) REFERENCES Pedido (id)

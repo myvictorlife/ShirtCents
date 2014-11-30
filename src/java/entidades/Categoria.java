@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -36,10 +37,11 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_CATEGORIA")
     private Integer idCategoria;
+    @Size(max = 45)
     @Column(name = "CATEGORIA")
     private String categoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
-    private Collection<Produto> produtoCollection;
+    private List<Produto> produtoList;
 
     public Categoria() {
     }
@@ -64,12 +66,12 @@ public class Categoria implements Serializable {
         this.categoria = categoria;
     }
 
-    public Collection<Produto> getProdutoCollection() {
-        return produtoCollection;
+    public List<Produto> getProdutoList() {
+        return produtoList;
     }
 
-    public void setProdutoCollection(Collection<Produto> produtoCollection) {
-        this.produtoCollection = produtoCollection;
+    public void setProdutoList(List<Produto> produtoList) {
+        this.produtoList = produtoList;
     }
 
     @Override
