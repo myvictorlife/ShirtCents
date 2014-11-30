@@ -1,23 +1,26 @@
 --INSERT INTO TABLE () VALUES ();
 
 -- -----------------------------------------------------
--- Table `shirtCents`.`Cliente`
+-- Table `shirtCents`.`usuario`
 -- -----------------------------------------------------
 
-insert into Cliente (nome, telefone, cpf, rg, email) 
-   values ('Maria Gabriela', '8888-8888', '016402245-07', '5483330','maria@yahoo.com.br');
+INSERT INTO USUARIO (NOME, EMAIL, LOGIN, SENHA, PROFILE)
+    VALUES ('Victor Cesar', 'victorcmggg@gmail.com', 'victor', '123', 'Admin');
 
-insert into Cliente (nome, telefone, cpf, rg, email) 
-   values ('Joao Carlos', '1111-1111', '352784357-08', '3256845','joaoc@gmail.com');
+INSERT INTO USUARIO (NOME, EMAIL, LOGIN, SENHA, PROFILE)
+    VALUES ('Gilberto Olimpio', 'gilberto.olimpio@gmail.com', 'gilbert', '321', 'Admin');
+
+INSERT INTO USUARIO (NOME, EMAIL, LOGIN, SENHA, PROFILE)
+    VALUES ('Pablo Ribeiro', 'pableeenho@gmail.com', 'pablo', '123', 'Leitor');
 
 -- -----------------------------------------------------
 -- Table `shirtCents`.`Endereco`
 -- -----------------------------------------------------
 
-INSERT INTO Endereco (logradouro, numero, complemento, cidade, estado, pais, cep, Cliente_id_cliente) 
+INSERT INTO Endereco (logradouro, numero, complemento, cidade, estado, pais, cep, id_usuario) 
    VALUES ('Avenida Amazonas', '1330', 'apart 222', 'Uberlandia', 'MG', 'Brasil', '38777-440', 1);
 
-INSERT INTO Endereco (logradouro, numero, complemento, cidade, estado, pais, cep, Cliente_id_cliente) 
+INSERT INTO Endereco (logradouro, numero, complemento, cidade, estado, pais, cep, id_usuario) 
    VALUES ('Rua Abadia', '330', '', 'Araguari', 'MG', 'Brasil', '38444-440', 2);
 
 
@@ -54,18 +57,7 @@ INSERT INTO FormaPagamento (descricao) VALUES('Cheque');
 -- Table `shirtCents`.`Itens`
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `shirtCents`.`usuario`
--- -----------------------------------------------------
 
-INSERT INTO USUARIO (NOME, EMAIL, LOGIN, SENHA, PROFILE)
-    VALUES ('Victor Cesar', 'victorcmggg@gmail.com', 'victor', '123', 'Admin');
-
-INSERT INTO USUARIO (NOME, EMAIL, LOGIN, SENHA, PROFILE)
-    VALUES ('Gilberto Olimpio', 'gilberto.olimpio@gmail.com', 'gilbert', '321', 'Admin');
-
-INSERT INTO USUARIO (NOME, EMAIL, LOGIN, SENHA, PROFILE)
-    VALUES ('Pablo Ribeiro', 'pableeenho@gmail.com', 'pablo', '123', 'Leitor');
 
 
 
