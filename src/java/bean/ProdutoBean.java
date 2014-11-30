@@ -112,7 +112,7 @@ public class ProdutoBean {
     public void setPieModel(PieChartModel pieModel) {
         this.pieModel = pieModel;
     }
- 
+
     public List<Produto> getProdutosBusca() {
         return produtosBusca;
     }
@@ -243,10 +243,15 @@ public class ProdutoBean {
         }
     }
 
-    public String buscaTop(){
+    public String buscaTop() {
         buscaProdutoPorNome();
         return "busca-produto";
     }
+    public String buscaProdutoPorNomeTemplate(){
+        buscaProdutoPorNome();
+        return "busca-produto";
+    }
+
     public void buscaProdutoPorNome() {
 
         EntityManager em = null;
@@ -254,9 +259,8 @@ public class ProdutoBean {
             em = JpaUtil.getEntityManager();
 
             produtosBusca = em.createQuery("Select p from Produto p where UPPER(p.descricao) like UPPER(:descricao)")
-                    .setParameter("descricao", "%"+buscaProduto+"%")
+                    .setParameter("descricao", "%" + buscaProduto + "%")
                     .getResultList();
-
 
         } catch (Exception e) {
             FacesContext.getCurrentInstance()
@@ -268,24 +272,24 @@ public class ProdutoBean {
 
     }
 
-    public void listarProdutoGrafico(){
+    public void listarProdutoGrafico() {
         todosProdutos();
         graficar();
     }
-    public void graficar(){
+
+    public void graficar() {
         pieModel = new PieChartModel();
         try {
-            
-        
-       for (Produto prod : this.produtos ) {
-          pieModel.set(prod.getDescricao(), prod.getPrecoVenda());
-       }
 
-        pieModel.setTitle("Preços");
-        pieModel.setLegendPosition("e");
-        pieModel.setFill(false);
-        pieModel.setShowDataLabels(true);
-        pieModel.setDiameter(150);
+            for (Produto prod : this.produtos) {
+                pieModel.set(prod.getDescricao(), prod.getQuantidade());
+            }
+
+            pieModel.setTitle("Preços");
+            pieModel.setLegendPosition("e");
+            pieModel.setFill(false);
+            pieModel.setShowDataLabels(true);
+            pieModel.setDiameter(150);
         } catch (Exception e) {
             System.out.println(e);
         }

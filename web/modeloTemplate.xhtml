@@ -46,7 +46,7 @@
                         <b:navLink value="Meu Carrinho" href="meu-carrinho.xhtml"></b:navLink>
 
                     </b:navbarLinks>
-                   
+
                     <div class="nav navbar-nav pull-right">
 
                         <b:navLink id="nomeUsuario" href="login.xhtml" value="#{usuarioLogin.usuario.nome}"></b:navLink>
@@ -72,6 +72,11 @@
                     </div>
                 </b:navBar>
                 <b:well>
+                    <h:form id="form-bus" style="text-align: center">
+                        <p:inputText value="#{produtoBean.buscaProduto}"/>
+                        <p:commandButton value="Buscar" action="#{produtoBean.buscaProdutoPorNomeTemplate()}"
+                                         />       
+                    </h:form><br/>
 
                     <div id='placeHolderID'>
                         <h:graphicImage library="img" name="ShirtCents1.png"/>
