@@ -4,20 +4,22 @@
 -- NOME DO USUARIO: shirt
 -- SENHA DO BANCO DE DADOS: cents
 -- -------------------------------------
-select * from produto where descricao like '%%';
--- ---------------------------------------------------%--
--- Table `shirtCents`.`Cliente`
+
+-- -----------------------------------------------------
+-- Table `shirtCents`.`usuario`
 -- -----------------------------------------------------
 
-CREATE TABLE Cliente (
+CREATE TABLE usuario (
   id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
   nome VARCHAR(45),
-  telefone VARCHAR(45),
-  cpf VARCHAR(45),
-  rg VARCHAR(45),
   email VARCHAR(45),
+  login VARCHAR(30),
+  senha VARCHAR(30),
+  profile VARCHAR(10),
   PRIMARY KEY (id)
 );
+
+
 
 -- -----------------------------------------------------
 -- Table `shirtCents`.`Endereco`
@@ -32,9 +34,9 @@ CREATE TABLE Endereco (
   estado VARCHAR(45),
   pais VARCHAR(45),
   cep VARCHAR(45),
-  Cliente_id_cliente INT NOT NULL,
+  id_usuario INT NOT NULL,
   PRIMARY KEY (idEndereco),
-  FOREIGN KEY (Cliente_id_cliente) REFERENCES Cliente (id)
+  FOREIGN KEY (id_usuario) REFERENCES Usuario (id)
   );
 
 -- -----------------------------------------------------
@@ -84,10 +86,10 @@ CREATE TABLE Pedido (
   status_pedido VARCHAR(50),
   criado_pedido DATE,
   modificado_pedido DATE,
-  Cliente_id_cliente INT NOT NULL,
+  id_usuario INT NOT NULL,
   FormaPagamento_id INT NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (Cliente_id_cliente) REFERENCES Cliente (id),
+  FOREIGN KEY (id_usuario) REFERENCES Usuario (id),
   FOREIGN KEY (FormaPagamento_id) REFERENCES FormaPagamento (id)
  );
 
@@ -105,17 +107,4 @@ CREATE TABLE Itens (
    FOREIGN KEY (Pedido_id) REFERENCES Pedido (id)
  );
 
--- -----------------------------------------------------
--- Table `shirtCents`.`usuario`
--- -----------------------------------------------------
-
-CREATE TABLE usuario (
-  id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-  nome VARCHAR(45),
-  email VARCHAR(45),
-  login VARCHAR(30),
-  senha VARCHAR(30),
-  profile VARCHAR(10),
-  PRIMARY KEY (id)
-);
 
