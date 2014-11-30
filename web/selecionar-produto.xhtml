@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./modeloTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:define name="right">
+
+
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Lista de Produtos"/></h1>
+                <p:dataTable value="#{produtoBean.produtosBusca}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="IdProduto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idProduto}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Descricao"/>
+                        </f:facet>
+                        <h:outputText value="#{item.descricao}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tamanho"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tamanho}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="PrecoVenda"/>
+                        </f:facet>
+                        <h:outputText value="#{item.precoVenda}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantidade"/>
+                        </f:facet>
+                        <h:outputText value="#{item.quantidade}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Sexo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sexo}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Carrinho"/>
+                        </f:facet>
+                        <p:commandButton value="Adicionar no Carrinho" action="#{pedidoBean.adicionarItem()}"  >
+                            <f:setPropertyActionListener value="#{item}" target="#{pedidoBean.produtoSelecionado}" />
+                        </p:commandButton>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </f:view>
+
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="List"/></h1>
+                <p:dataTable value="#{pedidoBean.itens}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantidade"/>
+                        </f:facet>
+                        <h:outputText value="#{item.quantidade}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Valor"/>
+                        </f:facet>
+                        <h:outputText value="#{item.valor}"/>
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Produto"/>
+                        </f:facet>
+                        <h:outputText value="#{item.produto.descricao}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+            <br/>
+            <br/>
+            <h:form>
+                Total Pedido Atual: <h:inputText value="#{pedidoBean.pedido.total}" style="text-align: right" readonly="true" /><br/>
+                Usuario Logado: <h:inputText value="#{usuarioLogin.usuario.nome}"  readonly="true" />
+               <br/>
+               <br/>
+                <h:commandButton value="Salvar Pedido" action="#{pedidoBean.salvar()}" />
+            </h:form>
+            
+            <h:messages showDetail="true" showSummary="true" />
+        </f:view>
+
+
+
+    </ui:define>
+
+</ui:composition>
+

@@ -6,7 +6,7 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -36,10 +37,11 @@ public class Formapagamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
+    @Size(max = 45)
     @Column(name = "DESCRICAO")
     private String descricao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "formapagamentoId")
-    private Collection<Pedido> pedidoCollection;
+    private List<Pedido> pedidoList;
 
     public Formapagamento() {
     }
@@ -64,12 +66,12 @@ public class Formapagamento implements Serializable {
         this.descricao = descricao;
     }
 
-    public Collection<Pedido> getPedidoCollection() {
-        return pedidoCollection;
+    public List<Pedido> getPedidoList() {
+        return pedidoList;
     }
 
-    public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
-        this.pedidoCollection = pedidoCollection;
+    public void setPedidoList(List<Pedido> pedidoList) {
+        this.pedidoList = pedidoList;
     }
 
     @Override

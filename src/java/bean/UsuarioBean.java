@@ -1,6 +1,9 @@
 package bean;
 
 import entidades.Usuario;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -14,43 +17,65 @@ import util.JpaUtil;
 @ManagedBean
 @SessionScoped
 public class UsuarioBean {
-    
+
     private Usuario usuario = new Usuario();
     private List<Usuario> usuarios = new ArrayList<>();
-    
+    private String classCSS = "visibility: hidden;";
+
     public UsuarioBean() {
         listarTodos();
     }
-    
-    public void modificaOpcaoRadio(){
-        if(usuario.getProfile().equals(String.valueOf(0))){
-            usuario.setProfile("Admin");
-        }else usuario.setProfile("Leitor");
-        
+
+    public String getClassCSS() {
+        return classCSS;
+    }
+
+    public void setClassCSS(String classCSS) {
+        this.classCSS = classCSS;
     }
     
-    
-   public void salvar() {
+
+    public void md5(String senha) {
+        String sen;
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+        }
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+        sen = hash.toString(16);
+        usuario.setEmail(sen);
+    }
+
+    public void modificaOpcaoRadio() {
+        if (usuario.getProfile().equals(String.valueOf(0))) {
+            usuario.setProfile("Admin");
+        } else {
+            usuario.setProfile("Leitor");
+        }
+
+    }
+
+    public void salvar() {
         modificaOpcaoRadio();
+        md5(usuario.getEmail());
         salvarCliente();
         listarTodos();
         novo();
     }
-   
-   public void novo(){ 
+
+    public void novo() {
         usuario = new Usuario();
     }
-   
-   public void apagar(){
-       apagarUsuario();
-       listarTodos();
-       novo();
-   }
-   
-   
-   
-   private void salvarCliente() {
-       
+
+    public void apagar() {
+        apagarUsuario();
+        listarTodos();
+        novo();
+    }
+
+    private void salvarCliente() {
+
         EntityManager manager = null;
         EntityTransaction etx = null;
         try {
@@ -73,9 +98,9 @@ public class UsuarioBean {
             JpaUtil.closeEntityManager(manager);
         }
     }
-    
-   private void apagarUsuario() {
-       
+
+    private void apagarUsuario() {
+
         EntityManager manager = null;
         EntityTransaction etx = null;
         try {
@@ -99,8 +124,7 @@ public class UsuarioBean {
             JpaUtil.closeEntityManager(manager);
         }
     }
-    
-    
+
     private void listarTodos() {
         EntityManager manager = null;
         try {
@@ -116,10 +140,8 @@ public class UsuarioBean {
         } finally {
             JpaUtil.closeEntityManager(manager);
         }
-        
-        
+
     }
-    
 
     public Usuario getUsuario() {
         return usuario;
@@ -136,5 +158,5 @@ public class UsuarioBean {
     public void setUsuarios(List<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
-    
+
 }

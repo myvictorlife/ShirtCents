@@ -26,16 +26,19 @@ import javax.persistence.Table;
     @NamedQuery(name = "Itens.findByQuantidade", query = "SELECT i FROM Itens i WHERE i.quantidade = :quantidade"),
     @NamedQuery(name = "Itens.findByValorUnitario", query = "SELECT i FROM Itens i WHERE i.valorUnitario = :valorUnitario"),
     @NamedQuery(name = "Itens.findByIdProduto", query = "SELECT i FROM Itens i WHERE i.itensPK.idProduto = :idProduto"),
-    @NamedQuery(name = "Itens.findByPedidoId", query = "SELECT i FROM Itens i WHERE i.itensPK.pedidoId = :pedidoId")})
+    @NamedQuery(name = "Itens.findByPedidoId", query = "SELECT i FROM Itens i WHERE i.itensPK.pedidoId = :pedidoId"),
+    @NamedQuery(name = "Itens.findByValor", query = "SELECT i FROM Itens i WHERE i.valor = :valor")})
 public class Itens implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected ItensPK itensPK;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "QUANTIDADE")
-    private Double quantidade;
+    private Integer quantidade;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "VALOR_UNITARIO")
     private Double valorUnitario;
+    @Column(name = "VALOR")
+    private Double valor;
     @JoinColumn(name = "PEDIDO_ID", referencedColumnName = "ID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Pedido pedido;
@@ -62,11 +65,11 @@ public class Itens implements Serializable {
         this.itensPK = itensPK;
     }
 
-    public Double getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(Double quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -76,6 +79,14 @@ public class Itens implements Serializable {
 
     public void setValorUnitario(Double valorUnitario) {
         this.valorUnitario = valorUnitario;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public Pedido getPedido() {

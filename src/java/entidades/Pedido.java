@@ -6,8 +6,8 @@
 package entidades;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -36,7 +37,9 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Pedido.findByPagamentoPedido", query = "SELECT p FROM Pedido p WHERE p.pagamentoPedido = :pagamentoPedido"),
     @NamedQuery(name = "Pedido.findByStatusPedido", query = "SELECT p FROM Pedido p WHERE p.statusPedido = :statusPedido"),
     @NamedQuery(name = "Pedido.findByCriadoPedido", query = "SELECT p FROM Pedido p WHERE p.criadoPedido = :criadoPedido"),
-    @NamedQuery(name = "Pedido.findByModificadoPedido", query = "SELECT p FROM Pedido p WHERE p.modificadoPedido = :modificadoPedido")})
+    @NamedQuery(name = "Pedido.findByModificadoPedido", query = "SELECT p FROM Pedido p WHERE p.modificadoPedido = :modificadoPedido"),
+    @NamedQuery(name = "Pedido.findByTotal", query = "SELECT p FROM Pedido p WHERE p.total = :total"),
+    @NamedQuery(name = "Pedido.findByDataPed", query = "SELECT p FROM Pedido p WHERE p.dataPed = :dataPed")})
 public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -47,6 +50,7 @@ public class Pedido implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PAGAMENTO_PEDIDO")
     private Double pagamentoPedido;
+    @Size(max = 50)
     @Column(name = "STATUS_PEDIDO")
     private String statusPedido;
     @Column(name = "CRIADO_PEDIDO")
@@ -55,14 +59,19 @@ public class Pedido implements Serializable {
     @Column(name = "MODIFICADO_PEDIDO")
     @Temporal(TemporalType.DATE)
     private Date modificadoPedido;
+    @Column(name = "TOTAL")
+    private Double total;
+    @Column(name = "DATA_PED")
+    @Temporal(TemporalType.DATE)
+    private Date dataPed;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
-    private Collection<Itens> itensCollection;
-    @JoinColumn(name = "CLIENTE_ID_CLIENTE", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Cliente clienteIdCliente;
+    private List<Itens> itensList;
     @JoinColumn(name = "FORMAPAGAMENTO_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Formapagamento formapagamentoId;
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario;
 
     public Pedido() {
     }
@@ -111,20 +120,28 @@ public class Pedido implements Serializable {
         this.modificadoPedido = modificadoPedido;
     }
 
-    public Collection<Itens> getItensCollection() {
-        return itensCollection;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setItensCollection(Collection<Itens> itensCollection) {
-        this.itensCollection = itensCollection;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
-    public Cliente getClienteIdCliente() {
-        return clienteIdCliente;
+    public Date getDataPed() {
+        return dataPed;
     }
 
-    public void setClienteIdCliente(Cliente clienteIdCliente) {
-        this.clienteIdCliente = clienteIdCliente;
+    public void setDataPed(Date dataPed) {
+        this.dataPed = dataPed;
+    }
+
+    public List<Itens> getItensList() {
+        return itensList;
+    }
+
+    public void setItensList(List<Itens> itensList) {
+        this.itensList = itensList;
     }
 
     public Formapagamento getFormapagamentoId() {
@@ -133,6 +150,14 @@ public class Pedido implements Serializable {
 
     public void setFormapagamentoId(Formapagamento formapagamentoId) {
         this.formapagamentoId = formapagamentoId;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override

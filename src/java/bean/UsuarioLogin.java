@@ -1,6 +1,7 @@
 package bean;
 
 import entidades.Usuario;
+
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -15,10 +16,14 @@ import util.JpaUtil;
 public class UsuarioLogin {
     
     private Usuario usuario = new Usuario();
+    
+    private String verificaLogout = "visibility: visible";
 
     
     public UsuarioLogin() {
     }
+    
+    
     
     public void sair() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -26,6 +31,7 @@ public class UsuarioLogin {
             session.invalidate();
         }    
         usuario = new Usuario();
+        verificaLogout = "visibility: visible";
     }
     
     public void entrar(){
@@ -44,7 +50,7 @@ public class UsuarioLogin {
                // return null;
             }
             usuario = usuarios.get(0);
-            
+            verificaLogout = "visibility: hidden";
        //     System.out.println("Nome: " + usuario.getNome());
          //   System.out.println("Email: " + usuario.getEmail());
            // System.out.println("Profile: " + usuario.getProfile());
@@ -60,14 +66,24 @@ public class UsuarioLogin {
         System.out.println("Email: " + usuario.getEmail());
         System.out.println("Profile: " + usuario.getProfile());
         //return null;
+        
     }
 
     public Usuario getUsuario() {
+        
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getVerificaLogout() {
+        return verificaLogout;
+    }
+
+    public void setVerificaLogout(String verificaLogout) {
+        this.verificaLogout = verificaLogout;
     }
     
     

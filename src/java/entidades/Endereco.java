@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -41,23 +42,30 @@ public class Endereco implements Serializable {
     @Basic(optional = false)
     @Column(name = "IDENDERECO")
     private Integer idendereco;
+    @Size(max = 45)
     @Column(name = "LOGRADOURO")
     private String logradouro;
+    @Size(max = 45)
     @Column(name = "NUMERO")
     private String numero;
+    @Size(max = 45)
     @Column(name = "COMPLEMENTO")
     private String complemento;
+    @Size(max = 45)
     @Column(name = "CIDADE")
     private String cidade;
+    @Size(max = 45)
     @Column(name = "ESTADO")
     private String estado;
+    @Size(max = 45)
     @Column(name = "PAIS")
     private String pais;
+    @Size(max = 45)
     @Column(name = "CEP")
     private String cep;
-    @JoinColumn(name = "CLIENTE_ID_CLIENTE", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Cliente clienteIdCliente;
+    private Usuario idUsuario;
 
     public Endereco() {
     }
@@ -130,12 +138,12 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
-    public Cliente getClienteIdCliente() {
-        return clienteIdCliente;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setClienteIdCliente(Cliente clienteIdCliente) {
-        this.clienteIdCliente = clienteIdCliente;
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @Override
