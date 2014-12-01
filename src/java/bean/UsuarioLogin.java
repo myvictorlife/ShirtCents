@@ -17,25 +17,24 @@ public class UsuarioLogin {
     
     private Usuario usuario = new Usuario();
     
-    private String verificaLogout = "visibility: visible";
-
-    
     public UsuarioLogin() {
     }
     
     
-    
     public void sair() {
+        FacesContext context = FacesContext.getCurrentInstance();   
+            context.getExternalContext().getSessionMap().remove("#{usuario}");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
         if(session != null) {
             session.invalidate();
+            this.usuario = new Usuario();
         }    
-        usuario = new Usuario();
-        verificaLogout = "visibility: visible";
+        
     }
     
     public void entrar(){
         EntityManager manager = null;
+      
         try {
             manager = JpaUtil.getEntityManager();  //acesso ao banco
 
@@ -50,7 +49,7 @@ public class UsuarioLogin {
                // return null;
             }
             usuario = usuarios.get(0);
-            verificaLogout = "visibility: hidden";
+           
        //     System.out.println("Nome: " + usuario.getNome());
          //   System.out.println("Email: " + usuario.getEmail());
            // System.out.println("Profile: " + usuario.getProfile());
@@ -78,14 +77,7 @@ public class UsuarioLogin {
         this.usuario = usuario;
     }
 
-    public String getVerificaLogout() {
-        return verificaLogout;
-    }
 
-    public void setVerificaLogout(String verificaLogout) {
-        this.verificaLogout = verificaLogout;
-    }
-    
     
     
 }

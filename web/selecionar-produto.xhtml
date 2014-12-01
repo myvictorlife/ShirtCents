@@ -68,49 +68,6 @@
             </h:form>
         </f:view>
 
-        <f:view>
-
-
-            <h:form>
-                <h1><h:outputText value="List"/></h1>
-                <p:dataTable value="#{pedidoBean.itens}" var="item">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Quantidade"/>
-                        </f:facet>
-                        <h:outputText value="#{item.quantidade}"/>
-                    </p:column>
-                    
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Valor"/>
-                        </f:facet>
-                        <h:outputText value="#{item.valor}"/>
-                    </p:column>
-                    
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Produto"/>
-                        </f:facet>
-                        <h:outputText value="#{item.produto.descricao}"/>
-                    </p:column>
-                </p:dataTable>
-            </h:form>
-            <br/>
-            <br/>
-            <h:form>
-                Total Pedido Atual: <h:inputText value="#{pedidoBean.pedido.total}" style="text-align: right" readonly="true" /><br/>
-                Usuario Logado: <h:inputText value="#{usuarioLogin.usuario.nome}"  readonly="true" />
-               <br/>
-               <br/>
-                <h:commandButton value="Salvar Pedido" action="#{pedidoBean.salvar()}" />
-            </h:form>
-            
-            <h:messages showDetail="true" showSummary="true" />
-        </f:view>
-
-
-
     </ui:define>
 
 </ui:composition>

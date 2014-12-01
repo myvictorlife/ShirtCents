@@ -6,9 +6,12 @@
 package entidades;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -23,46 +26,41 @@ import javax.persistence.Table;
 @Table(name = "ITENS")
 @NamedQueries({
     @NamedQuery(name = "Itens.findAll", query = "SELECT i FROM Itens i"),
+    @NamedQuery(name = "Itens.findById", query = "SELECT i FROM Itens i WHERE i.id = :id"),
     @NamedQuery(name = "Itens.findByQuantidade", query = "SELECT i FROM Itens i WHERE i.quantidade = :quantidade"),
-    @NamedQuery(name = "Itens.findByValorUnitario", query = "SELECT i FROM Itens i WHERE i.valorUnitario = :valorUnitario"),
-    @NamedQuery(name = "Itens.findByIdProduto", query = "SELECT i FROM Itens i WHERE i.itensPK.idProduto = :idProduto"),
-    @NamedQuery(name = "Itens.findByPedidoId", query = "SELECT i FROM Itens i WHERE i.itensPK.pedidoId = :pedidoId"),
     @NamedQuery(name = "Itens.findByValor", query = "SELECT i FROM Itens i WHERE i.valor = :valor")})
 public class Itens implements Serializable {
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected ItensPK itensPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "ID")
+    private Integer id;
     @Column(name = "QUANTIDADE")
     private Integer quantidade;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VALOR_UNITARIO")
-    private Double valorUnitario;
     @Column(name = "VALOR")
     private Double valor;
-    @JoinColumn(name = "PEDIDO_ID", referencedColumnName = "ID", insertable = false, updatable = false)
+    @JoinColumn(name = "PEDIDO_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Pedido pedido;
-    @JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO", insertable = false, updatable = false)
+    private Pedido pedidoId;
+    @JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
     @ManyToOne(optional = false)
-    private Produto produto;
+    private Produto idProduto;
 
     public Itens() {
     }
 
-    public Itens(ItensPK itensPK) {
-        this.itensPK = itensPK;
+    public Itens(Integer id) {
+        this.id = id;
     }
 
-    public Itens(int idProduto, int pedidoId) {
-        this.itensPK = new ItensPK(idProduto, pedidoId);
+    public Integer getId() {
+        return id;
     }
 
-    public ItensPK getItensPK() {
-        return itensPK;
-    }
-
-    public void setItensPK(ItensPK itensPK) {
-        this.itensPK = itensPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getQuantidade() {
@@ -73,14 +71,6 @@ public class Itens implements Serializable {
         this.quantidade = quantidade;
     }
 
-    public Double getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(Double valorUnitario) {
-        this.valorUnitario = valorUnitario;
-    }
-
     public Double getValor() {
         return valor;
     }
@@ -89,26 +79,26 @@ public class Itens implements Serializable {
         this.valor = valor;
     }
 
-    public Pedido getPedido() {
-        return pedido;
+    public Pedido getPedidoId() {
+        return pedidoId;
     }
 
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
+    public void setPedidoId(Pedido pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public Produto getIdProduto() {
+        return idProduto;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setIdProduto(Produto idProduto) {
+        this.idProduto = idProduto;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (itensPK != null ? itensPK.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -119,7 +109,7 @@ public class Itens implements Serializable {
             return false;
         }
         Itens other = (Itens) object;
-        if ((this.itensPK == null && other.itensPK != null) || (this.itensPK != null && !this.itensPK.equals(other.itensPK))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -127,7 +117,7 @@ public class Itens implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Itens[ itensPK=" + itensPK + " ]";
+        return "entidades.Itens[ id=" + id + " ]";
     }
     
 }

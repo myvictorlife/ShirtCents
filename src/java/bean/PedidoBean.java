@@ -1,5 +1,6 @@
 package bean;
 
+import entidades.Formapagamento;
 import entidades.Itens;
 import entidades.Pedido;
 import entidades.Produto;
@@ -35,13 +36,16 @@ public class PedidoBean {
 
     public void adicionarItem() {
         Itens item = new Itens();
-        item.setPedido(pedido);
-        item.setProduto(produtoSelecionado);
+        item.setPedidoId(pedido);
+        item.setIdProduto(produtoSelecionado);
         item.setQuantidade(1);
         item.setValor(produtoSelecionado.getPrecoVenda() * item.getQuantidade());
         if (pedido.getItensList() == null) {
             pedido.setItensList(new ArrayList<Itens>());
         }
+        
+        
+        
         pedido.getItensList().add(item);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "OK!", "Item " + produtoSelecionado.getDescricao() + " adicionado ao carrinho!"));
@@ -75,9 +79,16 @@ public class PedidoBean {
             etx.begin();
 
             UsuarioLogin usuarioLogin = (UsuarioLogin) FacesContext.getCurrentInstance()
-                    .getExternalContext().getSessionMap().get("UsuarioLogin");
+                    .getExternalContext().getSessionMap().get("usuarioLogin");
             Usuario usuarioLogado = usuarioLogin.getUsuario();
+            
             pedido.setIdUsuario(usuarioLogado);
+            
+            Formapagamento pagamento = new Formapagamento();
+            pagamento.setId(1);
+            pagamento.setDescricao("Dinheiro");
+            
+            pedido.setFormapagamentoId(pagamento);
             pedido.setDataPed(new java.util.Date());
             manager.persist(pedido);
 
@@ -137,5 +148,7 @@ public class PedidoBean {
     public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
         this.usuarioSelecionado = usuarioSelecionado;
     }
+    
+ 
 
 }

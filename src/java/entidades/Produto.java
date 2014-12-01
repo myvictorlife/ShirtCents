@@ -67,7 +67,7 @@ public class Produto implements Serializable {
     @JoinColumn(name = "ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produto")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProduto")
     private List<Itens> itensList;
 
     public Produto() {

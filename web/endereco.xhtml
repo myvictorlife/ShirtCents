@@ -34,7 +34,7 @@
                     <p:outputLabel value="Cep:" for="cep" />
                     <p:inputText id="cep" value="#{enderecoBean.endereco.cep}" title="Cep" />
           <!--          <p:outputLabel value="ClienteIdCliente:" for="clienteIdCliente" /> -->
-                <!--     <h:selectOneMenu id="clienteIdCliente" value="#{enderecoBean.endereco.clienteIdCliente}" title="ClienteIdCliente" required="true" requiredMessage="The ClienteIdCliente field is required.">-->
+                          <!--     <h:selectOneMenu id="clienteIdCliente" value="#{enderecoBean.endereco.idUsuario}" title="ClienteIdCliente" required="true" requiredMessage="The ClienteIdCliente field is required.">-->
                     <!-- TODO: update below reference to list of available items-->
             <!--        <f:selectItems value="#{fixme}"/> -->
                     <!--    </h:selectOneMenu> -->
@@ -102,7 +102,7 @@
                         <f:facet name="header">
                             <h:outputText value="ClienteIdCliente"/>
                         </f:facet>
-                        <h:outputText value="#{item.clienteIdCliente}"/>
+                        <h:outputText value="#{item.idUsuario}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">

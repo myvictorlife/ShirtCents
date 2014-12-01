@@ -82,10 +82,8 @@ CREATE TABLE FormaPagamento (
 
 CREATE TABLE Pedido (
   id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-  pagamento_pedido DOUBLE,
   status_pedido VARCHAR(50),
   criado_pedido DATE,
-  modificado_pedido DATE,
   id_usuario INT NOT NULL,
   total DOUBLE,
   data_ped date,
@@ -100,12 +98,12 @@ CREATE TABLE Pedido (
 -- -----------------------------------------------------
 
 CREATE TABLE Itens (
-   quantidade int,
-   valor_unitario DOUBLE,
+   id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
    id_produto INT NOT NULL,
    Pedido_id INT NOT NULL,
+   quantidade int,
    valor DOUBLE,
-   PRIMARY KEY (id_produto, Pedido_id),
+   PRIMARY KEY (id),
    FOREIGN KEY (id_produto) REFERENCES Produto (id_produto),
    FOREIGN KEY (Pedido_id) REFERENCES Pedido (id)
  );

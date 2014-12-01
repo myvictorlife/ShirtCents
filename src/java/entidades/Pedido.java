@@ -34,10 +34,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
     @NamedQuery(name = "Pedido.findById", query = "SELECT p FROM Pedido p WHERE p.id = :id"),
-    @NamedQuery(name = "Pedido.findByPagamentoPedido", query = "SELECT p FROM Pedido p WHERE p.pagamentoPedido = :pagamentoPedido"),
     @NamedQuery(name = "Pedido.findByStatusPedido", query = "SELECT p FROM Pedido p WHERE p.statusPedido = :statusPedido"),
     @NamedQuery(name = "Pedido.findByCriadoPedido", query = "SELECT p FROM Pedido p WHERE p.criadoPedido = :criadoPedido"),
-    @NamedQuery(name = "Pedido.findByModificadoPedido", query = "SELECT p FROM Pedido p WHERE p.modificadoPedido = :modificadoPedido"),
     @NamedQuery(name = "Pedido.findByTotal", query = "SELECT p FROM Pedido p WHERE p.total = :total"),
     @NamedQuery(name = "Pedido.findByDataPed", query = "SELECT p FROM Pedido p WHERE p.dataPed = :dataPed")})
 public class Pedido implements Serializable {
@@ -47,24 +45,19 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "PAGAMENTO_PEDIDO")
-    private Double pagamentoPedido;
     @Size(max = 50)
     @Column(name = "STATUS_PEDIDO")
     private String statusPedido;
     @Column(name = "CRIADO_PEDIDO")
     @Temporal(TemporalType.DATE)
     private Date criadoPedido;
-    @Column(name = "MODIFICADO_PEDIDO")
-    @Temporal(TemporalType.DATE)
-    private Date modificadoPedido;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TOTAL")
     private Double total;
     @Column(name = "DATA_PED")
     @Temporal(TemporalType.DATE)
     private Date dataPed;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoId")
     private List<Itens> itensList;
     @JoinColumn(name = "FORMAPAGAMENTO_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false)
@@ -88,14 +81,6 @@ public class Pedido implements Serializable {
         this.id = id;
     }
 
-    public Double getPagamentoPedido() {
-        return pagamentoPedido;
-    }
-
-    public void setPagamentoPedido(Double pagamentoPedido) {
-        this.pagamentoPedido = pagamentoPedido;
-    }
-
     public String getStatusPedido() {
         return statusPedido;
     }
@@ -110,14 +95,6 @@ public class Pedido implements Serializable {
 
     public void setCriadoPedido(Date criadoPedido) {
         this.criadoPedido = criadoPedido;
-    }
-
-    public Date getModificadoPedido() {
-        return modificadoPedido;
-    }
-
-    public void setModificadoPedido(Date modificadoPedido) {
-        this.modificadoPedido = modificadoPedido;
     }
 
     public Double getTotal() {
