@@ -95,6 +95,7 @@ public class ProdutoBean {
     }
     
      public void itemSelect(ItemSelectEvent event) {
+
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
                         "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
          
