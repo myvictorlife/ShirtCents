@@ -103,7 +103,7 @@ public class EnderecoBean {
             etx = manager.getTransaction();
             etx.begin();
 
-            endereco = manager.find(Endereco.class, endereco.getIdendereco());
+            endereco = manager.find(Endereco.class, endereco.getIdEndereco());
             manager.remove(endereco);
 
             etx.commit();

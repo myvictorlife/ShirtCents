@@ -39,24 +39,24 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
     @Size(max = 45)
-    @Column(name = "NOME")
+    @Column(name = "nome")
     private String nome;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 45)
-    @Column(name = "EMAIL")
+    @Column(name = "email")
     private String email;
     @Size(max = 30)
-    @Column(name = "LOGIN")
+    @Column(name = "login")
     private String login;
     @Size(max = 30)
-    @Column(name = "SENHA")
+    @Column(name = "senha")
     private String senha;
     @Size(max = 10)
-    @Column(name = "PROFILE")
-    private String profile = "Leitor";
+    @Column(name = "profile")
+    private String profile;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Pedido> pedidoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")

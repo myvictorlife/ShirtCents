@@ -35,12 +35,12 @@ public class Formapagamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
     @Size(max = 45)
-    @Column(name = "DESCRICAO")
+    @Column(name = "descricao")
     private String descricao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formapagamentoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "formaPagamentoid")
     private List<Pedido> pedidoList;
 
     public Formapagamento() {

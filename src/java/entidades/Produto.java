@@ -43,30 +43,30 @@ public class Produto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_PRODUTO")
+    @Column(name = "id_produto")
     private Integer idProduto;
     @Size(max = 45)
-    @Column(name = "DESCRICAO")
+    @Column(name = "descricao")
     private String descricao;
     @Size(max = 10)
-    @Column(name = "TAMANHO")
+    @Column(name = "tamanho")
     private String tamanho;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "PRECO_CUSTO")
+    @Column(name = "preco_custo")
     private Double precoCusto;
-    @Column(name = "PRECO_VENDA")
+    @Column(name = "preco_venda")
     private Double precoVenda;
-    @Column(name = "QUANTIDADE")
+    @Column(name = "quantidade")
     private Integer quantidade;
     @Size(max = 10)
     @Column(name = "SEXO")
     private String sexo;
     @Lob
-    @Column(name = "FOTO")
+    @Column(name = "foto")
     private byte[] foto;
-    @JoinColumn(name = "ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(optional = false)
-    private Categoria idCategoria = new Categoria();
+    private Categoria idCategoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProduto")
     private List<Itens> itensList;
 

@@ -28,26 +28,26 @@ INSERT INTO Endereco (logradouro, numero, complemento, cidade, estado, pais, cep
 -- Table `shirtCents`.`Categoria`
 -- -----------------------------------------------------
 
-INSERT INTO categoria (categoria) VALUES ('CAMISA');
-INSERT INTO categoria (categoria) VALUES ('PULSEIRA');
+INSERT INTO CATEGORIA (categoria) VALUES ('CAMISA');
+INSERT INTO CATEGORIA (categoria) VALUES ('PULSEIRA');
 
 -- -----------------------------------------------------
 -- Table `shirtCents`.`Produto`
 -- -----------------------------------------------------
 
-INSERT INTO Produto (descricao, tamanho, preco_custo,PRECO_VENDA, quantidade, sexo, id_categoria) 
+INSERT INTO PRODUTO (descricao, tamanho, preco_custo,PRECO_VENDA, quantidade, sexo, id_categoria) 
     VALUES ('Camisa Polo', 'G', 22.90,44.80, 20, 'Feminino' ,1);
 
-INSERT INTO Produto (descricao, tamanho, preco_custo,PRECO_VENDA, quantidade, sexo ,id_categoria) 
+INSERT INTO PRODUTO (descricao, tamanho, preco_custo,PRECO_VENDA, quantidade, sexo ,id_categoria) 
     VALUES ('Pandora', 'A', 12.90,34.90, 12, 'Masculino' ,2);
 
 -- -----------------------------------------------------
 -- Table `shirtCents`.`FormaPagamento`
 -- -----------------------------------------------------
 
-INSERT INTO FormaPagamento (descricao) VALUES('Cartao');
-INSERT INTO FormaPagamento (descricao) VALUES('Dinheiro');
-INSERT INTO FormaPagamento (descricao) VALUES('Cheque');
+INSERT INTO Formapagamento (descricao) VALUES('Cartao');
+INSERT INTO Formapagamento (descricao) VALUES('Dinheiro');
+INSERT INTO Formapagamento (descricao) VALUES('Cheque');
 
 -- -----------------------------------------------------
 -- Table `shirtCents`.`Pedido`

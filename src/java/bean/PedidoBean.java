@@ -36,7 +36,7 @@ public class PedidoBean {
 
     public void adicionarItem() {
         Itens item = new Itens();
-        item.setPedidoId(pedido);
+        item.setPedidoid(pedido);
         item.setIdProduto(produtoSelecionado);
         item.setQuantidade(1);
         item.setValor(produtoSelecionado.getPrecoVenda() * item.getQuantidade());
@@ -88,7 +88,7 @@ public class PedidoBean {
             pagamento.setId(1);
             pagamento.setDescricao("Dinheiro");
             
-            pedido.setFormapagamentoId(pagamento);
+            pedido.setFormaPagamentoid(pagamento);
             pedido.setDataPed(new java.util.Date());
             manager.persist(pedido);
 

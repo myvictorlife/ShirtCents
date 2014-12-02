@@ -23,7 +23,7 @@ import javax.persistence.Table;
  * @author victor
  */
 @Entity
-@Table(name = "ITENS")
+@Table(name = "Itens")
 @NamedQueries({
     @NamedQuery(name = "Itens.findAll", query = "SELECT i FROM Itens i"),
     @NamedQuery(name = "Itens.findById", query = "SELECT i FROM Itens i WHERE i.id = :id"),
@@ -34,19 +34,19 @@ public class Itens implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
-    @Column(name = "QUANTIDADE")
+    @Column(name = "quantidade")
     private Integer quantidade;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VALOR")
+    @Column(name = "valor")
     private Double valor;
-    @JoinColumn(name = "PEDIDO_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Pedido pedidoId;
-    @JoinColumn(name = "ID_PRODUTO", referencedColumnName = "ID_PRODUTO")
+    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
     @ManyToOne(optional = false)
     private Produto idProduto;
+    @JoinColumn(name = "Pedido_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Pedido pedidoid;
 
     public Itens() {
     }
@@ -79,20 +79,20 @@ public class Itens implements Serializable {
         this.valor = valor;
     }
 
-    public Pedido getPedidoId() {
-        return pedidoId;
-    }
-
-    public void setPedidoId(Pedido pedidoId) {
-        this.pedidoId = pedidoId;
-    }
-
     public Produto getIdProduto() {
         return idProduto;
     }
 
     public void setIdProduto(Produto idProduto) {
         this.idProduto = idProduto;
+    }
+
+    public Pedido getPedidoid() {
+        return pedidoid;
+    }
+
+    public void setPedidoid(Pedido pedidoid) {
+        this.pedidoid = pedidoid;
     }
 
     @Override

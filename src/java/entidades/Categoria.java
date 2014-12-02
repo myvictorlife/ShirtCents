@@ -35,10 +35,10 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_CATEGORIA")
+    @Column(name = "id_categoria")
     private Integer idCategoria;
     @Size(max = 45)
-    @Column(name = "CATEGORIA")
+    @Column(name = "categoria")
     private String categoria;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCategoria")
     private List<Produto> produtoList;

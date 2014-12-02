@@ -43,28 +43,28 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID")
+    @Column(name = "id")
     private Integer id;
     @Size(max = 50)
-    @Column(name = "STATUS_PEDIDO")
+    @Column(name = "status_pedido")
     private String statusPedido;
-    @Column(name = "CRIADO_PEDIDO")
+    @Column(name = "criado_pedido")
     @Temporal(TemporalType.DATE)
     private Date criadoPedido;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "TOTAL")
+    @Column(name = "total")
     private Double total;
-    @Column(name = "DATA_PED")
+    @Column(name = "data_ped")
     @Temporal(TemporalType.DATE)
     private Date dataPed;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoid")
     private List<Itens> itensList;
-    @JoinColumn(name = "FORMAPAGAMENTO_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Formapagamento formapagamentoId;
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
+    @JoinColumn(name = "FormaPagamento_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Formapagamento formaPagamentoid;
 
     public Pedido() {
     }
@@ -121,20 +121,20 @@ public class Pedido implements Serializable {
         this.itensList = itensList;
     }
 
-    public Formapagamento getFormapagamentoId() {
-        return formapagamentoId;
-    }
-
-    public void setFormapagamentoId(Formapagamento formapagamentoId) {
-        this.formapagamentoId = formapagamentoId;
-    }
-
     public Usuario getIdUsuario() {
         return idUsuario;
     }
 
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Formapagamento getFormaPagamentoid() {
+        return formaPagamentoid;
+    }
+
+    public void setFormaPagamentoid(Formapagamento formaPagamentoid) {
+        this.formaPagamentoid = formaPagamentoid;
     }
 
     @Override

@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
 @Table(name = "ENDERECO")
 @NamedQueries({
     @NamedQuery(name = "Endereco.findAll", query = "SELECT e FROM Endereco e"),
-    @NamedQuery(name = "Endereco.findByIdendereco", query = "SELECT e FROM Endereco e WHERE e.idendereco = :idendereco"),
+    @NamedQuery(name = "Endereco.findByIdEndereco", query = "SELECT e FROM Endereco e WHERE e.idEndereco = :idEndereco"),
     @NamedQuery(name = "Endereco.findByLogradouro", query = "SELECT e FROM Endereco e WHERE e.logradouro = :logradouro"),
     @NamedQuery(name = "Endereco.findByNumero", query = "SELECT e FROM Endereco e WHERE e.numero = :numero"),
     @NamedQuery(name = "Endereco.findByComplemento", query = "SELECT e FROM Endereco e WHERE e.complemento = :complemento"),
@@ -40,46 +40,46 @@ public class Endereco implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "IDENDERECO")
-    private Integer idendereco;
+    @Column(name = "idEndereco")
+    private Integer idEndereco;
     @Size(max = 45)
-    @Column(name = "LOGRADOURO")
+    @Column(name = "logradouro")
     private String logradouro;
     @Size(max = 45)
-    @Column(name = "NUMERO")
+    @Column(name = "numero")
     private String numero;
     @Size(max = 45)
-    @Column(name = "COMPLEMENTO")
+    @Column(name = "complemento")
     private String complemento;
     @Size(max = 45)
-    @Column(name = "CIDADE")
+    @Column(name = "cidade")
     private String cidade;
     @Size(max = 45)
-    @Column(name = "ESTADO")
+    @Column(name = "estado")
     private String estado;
     @Size(max = 45)
-    @Column(name = "PAIS")
+    @Column(name = "pais")
     private String pais;
     @Size(max = 45)
-    @Column(name = "CEP")
+    @Column(name = "cep")
     private String cep;
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID")
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuario idUsuario;
 
     public Endereco() {
     }
 
-    public Endereco(Integer idendereco) {
-        this.idendereco = idendereco;
+    public Endereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
-    public Integer getIdendereco() {
-        return idendereco;
+    public Integer getIdEndereco() {
+        return idEndereco;
     }
 
-    public void setIdendereco(Integer idendereco) {
-        this.idendereco = idendereco;
+    public void setIdEndereco(Integer idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getLogradouro() {
@@ -149,7 +149,7 @@ public class Endereco implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idendereco != null ? idendereco.hashCode() : 0);
+        hash += (idEndereco != null ? idEndereco.hashCode() : 0);
         return hash;
     }
 
@@ -160,7 +160,7 @@ public class Endereco implements Serializable {
             return false;
         }
         Endereco other = (Endereco) object;
-        if ((this.idendereco == null && other.idendereco != null) || (this.idendereco != null && !this.idendereco.equals(other.idendereco))) {
+        if ((this.idEndereco == null && other.idEndereco != null) || (this.idEndereco != null && !this.idEndereco.equals(other.idEndereco))) {
             return false;
         }
         return true;
@@ -168,7 +168,7 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades.Endereco[ idendereco=" + idendereco + " ]";
+        return "entidades.Endereco[ idEndereco=" + idEndereco + " ]";
     }
     
 }
