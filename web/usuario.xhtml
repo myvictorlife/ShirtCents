@@ -24,8 +24,8 @@
                 <p:outputLabel value="Senha" for="tSenha"/>
                 <p:inputText id="tSenha" value="#{usuarioBean.usuario.senha}" />
 
-                <p:outputLabel value="Profile"/>
-                <p:selectOneRadio  value="#{usuarioBean.usuario.profile}">
+                <p:outputLabel value="Profile" rendered="#{usuarioLogin.adm}"/>
+                <p:selectOneRadio  value="#{usuarioBean.usuario.profile}" rendered="#{usuarioLogin.adm}">
                     <f:selectItem itemValue="0" itemLabel=" Admin" />
                     <f:selectItem itemValue="1"  itemLabel=" Leitor" />
                 </p:selectOneRadio>

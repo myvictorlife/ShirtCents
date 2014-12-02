@@ -66,10 +66,19 @@
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Codigo Categoria"/>
+                            <h:outputText value="Categoria"/>
                         </f:facet>
                         <h:outputText value="#{item.idCategoria.categoria}"/>
                     </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Foto"/>
+                        </f:facet>
+                        <p:graphicImage value="#{produtoBean.produto.foto}"/>
+                    </p:column>
+                    
+                    
                 </p:dataTable>
             </h:form>
         </f:view>

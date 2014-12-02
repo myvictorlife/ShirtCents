@@ -56,7 +56,7 @@ public class Usuario implements Serializable {
     private String senha;
     @Size(max = 10)
     @Column(name = "PROFILE")
-    private String profile;
+    private String profile = "Leitor";
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Pedido> pedidoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")

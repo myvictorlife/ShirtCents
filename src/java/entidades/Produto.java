@@ -63,7 +63,7 @@ public class Produto implements Serializable {
     private String sexo;
     @Lob
     @Column(name = "FOTO")
-    private Serializable foto;
+    private byte[] foto;
     @JoinColumn(name = "ID_CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
     private Categoria idCategoria = new Categoria();
@@ -133,11 +133,11 @@ public class Produto implements Serializable {
         this.sexo = sexo;
     }
 
-    public Serializable getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(Serializable foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
 

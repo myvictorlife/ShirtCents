@@ -17,6 +17,7 @@ import javax.persistence.EntityTransaction;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.IOUtils;
+import org.primefaces.component.graphicimage.GraphicImage;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -36,7 +37,12 @@ public class ProdutoBean {
     private String buscaProduto = "";
     private PieChartModel pieModel = new PieChartModel();
     private BarChartModel barModel = new BarChartModel();
+    
+    
 
+    
+    
+    
     public ProdutoBean() {
         carregaCategoria();
         buscaProdutoPorNome();
@@ -94,6 +100,10 @@ public class ProdutoBean {
          
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
+   
+
+     
 
     public PieChartModel getPieModel() {
         return pieModel;

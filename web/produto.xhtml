@@ -44,6 +44,8 @@
                                    itemLabel="#{cat.categoria}"
                                    itemValue="#{cat.idCategoria}"/>
                 </h:selectOneMenu>
+                
+                <a href="categoria.xhtml"  style="color: orangered">nova categoria</a>
 
                 <p:fileUpload fileUploadListener="#{produtoBean.upload}"
                               mode="advanced" 
@@ -51,7 +53,7 @@
                               sizeLimit="100000" 
                               allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
 
-
+                
 
             </p:panelGrid>
             <br/>

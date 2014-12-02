@@ -14,27 +14,36 @@ import util.JpaUtil;
 @ManagedBean
 @SessionScoped
 public class UsuarioLogin {
-    
+
     private Usuario usuario = new Usuario();
-    
+    private boolean logado = false;
+
     public UsuarioLogin() {
     }
-    
-    
+
+    public boolean isLogado() {
+        return logado;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+
+
     public void sair() {
-        FacesContext context = FacesContext.getCurrentInstance();   
-            context.getExternalContext().getSessionMap().remove("#{usuario}");
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getSessionMap().remove("#{usuario}");
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        if(session != null) {
+        if (session != null) {
             session.invalidate();
             this.usuario = new Usuario();
-        }    
-        
+        }
+
     }
-    
-    public void entrar(){
+
+    public void entrar() {
         EntityManager manager = null;
-      
+
         try {
             manager = JpaUtil.getEntityManager();  //acesso ao banco
 
@@ -46,14 +55,14 @@ public class UsuarioLogin {
             if (usuarios != null && usuarios.isEmpty()) {
                 FacesContext.getCurrentInstance()
                         .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: ", " usuario inexistente com tal user!"));
-               // return null;
+                // return null;
             }
             usuario = usuarios.get(0);
-           
-       //     System.out.println("Nome: " + usuario.getNome());
-         //   System.out.println("Email: " + usuario.getEmail());
-           // System.out.println("Profile: " + usuario.getProfile());
+            this.logado = true;
 
+       //     System.out.println("Nome: " + usuario.getNome());
+            //   System.out.println("Email: " + usuario.getEmail());
+            // System.out.println("Profile: " + usuario.getProfile());
             //return "login"; //vai para a página principal.xhtml
         } catch (Exception ex) {
             FacesContext.getCurrentInstance()
@@ -65,11 +74,11 @@ public class UsuarioLogin {
         System.out.println("Email: " + usuario.getEmail());
         System.out.println("Profile: " + usuario.getProfile());
         //return null;
-        
+
     }
 
     public Usuario getUsuario() {
-        
+
         return usuario;
     }
 
@@ -77,7 +86,24 @@ public class UsuarioLogin {
         this.usuario = usuario;
     }
 
+    public boolean isAdm() {
+        if (usuario.getProfile() == null) {
+            return false;
+        } else {
+            if (usuario.getProfile().equals("Admin")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+    public boolean isCadastrar(){
+        if(!isAdm()){
+            if(isLogado()){ 
+                return true;
+            }
+        }
+        return false;
+    }
 
-    
-    
 }
