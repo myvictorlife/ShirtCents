@@ -66,7 +66,7 @@ public class Produto implements Serializable {
     private byte[] foto;
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(optional = false)
-    private Categoria idCategoria;
+    private Categoria idCategoria = new Categoria();
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProduto")
     private List<Itens> itensList;
 

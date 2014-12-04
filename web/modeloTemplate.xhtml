@@ -50,7 +50,8 @@
 
                         <b:navLink id="nomeUsuario" outcome="login.xhtml" value="#{usuarioLogin.usuario.nome}"></b:navLink>
                         <b:navLink id="cadastrarUsuario" outcome="usuario.xhtml" rendered="#{!usuarioLogin.cadastrar}" value="Cadastro de usuario"></b:navLink>
-
+                        
+                        <b:navLink  id="sairLink" rendered="#{usuarioLogin.logado}" value="Sair" href="javascript:void(0)" icon="glyphicon glyphicon-log-out"></b:navLink>
                         <b:navLink  id="modalLink" rendered="#{!usuarioLogin.logado}" value="Login" href="javascript:void(0)" icon="glyphicon glyphicon-log-out"></b:navLink>
 
                         <div id="divLogin">
@@ -155,6 +156,7 @@
             </ui:insert>
         </div>
 
+       
 
     </h:body>
 

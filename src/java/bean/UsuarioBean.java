@@ -48,7 +48,7 @@ public class UsuarioBean {
     }
 
     public void modificaOpcaoRadio() {
-        if (usuario.getProfile().equals(String.valueOf(0))) {
+        if (usuario.getProfile().equals(String.valueOf(0)) && usuario.getProfile() != null) {
             usuario.setProfile("Admin");
         } else {
             usuario.setProfile("Leitor");
