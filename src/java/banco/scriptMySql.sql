@@ -106,5 +106,5 @@ CREATE TABLE Itens (
    FOREIGN KEY (Pedido_id) REFERENCES PEDIDO (id)
  );
 
-
-
+insert into USUARIO (nome,email,login,senha,profile)
+ VALUES ('Pablo Ribeiro','pableeenho@gmail.com','pablo','123','Admin');

@@ -57,6 +57,7 @@ public class CategoriaBean {
     public void salvar() {
         salvarProduto();
         carregaCategoria();
+        novo();
     }
 
     public void salvarProduto() {
@@ -70,7 +71,7 @@ public class CategoriaBean {
             emTx.commit();
             FacesContext.getCurrentInstance()
                     .addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "OK! ", "Categoria salva com sucesso! " + new java.util.Date()));
-            novo();
+            
         } catch (Exception ex) {
             try {
                 emTx.rollback();

@@ -5,6 +5,7 @@
  */
 package entidades;
 
+import bean.FormaPagamentoBean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author victor
+ * @author pablo
  */
 @Entity
 @Table(name = "PEDIDO")
@@ -57,14 +58,14 @@ public class Pedido implements Serializable {
     @Column(name = "data_ped")
     @Temporal(TemporalType.DATE)
     private Date dataPed;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoid")
-    private List<Itens> itensList;
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Usuario idUsuario;
     @JoinColumn(name = "FormaPagamento_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Formapagamento formaPagamentoid;
+    private Formapagamento formaPagamentoid = new Formapagamento();
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Usuario idUsuario = new Usuario();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoid")
+    private List<Itens> itensList;
 
     public Pedido() {
     }
@@ -113,12 +114,12 @@ public class Pedido implements Serializable {
         this.dataPed = dataPed;
     }
 
-    public List<Itens> getItensList() {
-        return itensList;
+    public Formapagamento getFormaPagamentoid() {
+        return formaPagamentoid;
     }
 
-    public void setItensList(List<Itens> itensList) {
-        this.itensList = itensList;
+    public void setFormaPagamentoid(Formapagamento formaPagamentoid) {
+        this.formaPagamentoid = formaPagamentoid;
     }
 
     public Usuario getIdUsuario() {
@@ -129,12 +130,12 @@ public class Pedido implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Formapagamento getFormaPagamentoid() {
-        return formaPagamentoid;
+    public List<Itens> getItensList() {
+        return itensList;
     }
 
-    public void setFormaPagamentoid(Formapagamento formaPagamentoid) {
-        this.formaPagamentoid = formaPagamentoid;
+    public void setItensList(List<Itens> itensList) {
+        this.itensList = itensList;
     }
 
     @Override

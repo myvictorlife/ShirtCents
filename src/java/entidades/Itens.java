@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entidades;
 
 import java.io.Serializable;
@@ -18,10 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-/**
- *
- * @author victor
- */
+
 @Entity
 @Table(name = "Itens")
 @NamedQueries({
@@ -41,12 +33,12 @@ public class Itens implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valor")
     private Double valor;
-    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
-    @ManyToOne(optional = false)
-    private Produto idProduto;
     @JoinColumn(name = "Pedido_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Pedido pedidoid;
+    @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+    @ManyToOne(optional = false)
+    private Produto idProduto;
 
     public Itens() {
     }
@@ -79,20 +71,20 @@ public class Itens implements Serializable {
         this.valor = valor;
     }
 
-    public Produto getIdProduto() {
-        return idProduto;
-    }
-
-    public void setIdProduto(Produto idProduto) {
-        this.idProduto = idProduto;
-    }
-
     public Pedido getPedidoid() {
         return pedidoid;
     }
 
     public void setPedidoid(Pedido pedidoid) {
         this.pedidoid = pedidoid;
+    }
+
+    public Produto getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(Produto idProduto) {
+        this.idProduto = idProduto;
     }
 
     @Override
