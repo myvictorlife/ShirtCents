@@ -2,9 +2,11 @@ package bean;
 
 import entidades.Categoria;
 import entidades.Produto;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +21,8 @@ import org.primefaces.model.UploadedFile;
 import org.apache.commons.io.IOUtils;
 import org.primefaces.component.graphicimage.GraphicImage;
 import org.primefaces.event.ItemSelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BarChartModel;
@@ -37,41 +41,38 @@ public class ProdutoBean {
     private String buscaProduto = "";
     private PieChartModel pieModel = new PieChartModel();
     private BarChartModel barModel = new BarChartModel();
-    
-    
 
-    
-    
-    
+    private StreamedContent imagem;
+
     public ProdutoBean() {
         carregaCategoria();
         buscaProdutoPorNome();
         listarProdutoGrafico();
         createBarModel();
     }
-    
-    public void init(){
+
+    public void init() {
         createBarModel();
     }
-    
+
     private void createBarModel() {
         barModel = initBarModel();
-         
+
         barModel.setTitle("Bar Chart");
         barModel.setLegendPosition("ne");
-         
+
         Axis xAxis = barModel.getAxis(AxisType.X);
         xAxis.setLabel("Gender");
-         
+
         Axis yAxis = barModel.getAxis(AxisType.Y);
         yAxis.setLabel("Births");
         yAxis.setMin(0);
         yAxis.setMax(200);
     }
-    
+
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
- 
+
         ChartSeries boys = new ChartSeries();
         boys.setLabel("Boys");
         boys.set("2004", 120);
@@ -79,7 +80,7 @@ public class ProdutoBean {
         boys.set("2006", 44);
         boys.set("2007", 150);
         boys.set("2008", 25);
- 
+
         ChartSeries girls = new ChartSeries();
         girls.setLabel("Girls");
         girls.set("2004", 52);
@@ -87,24 +88,20 @@ public class ProdutoBean {
         girls.set("2006", 110);
         girls.set("2007", 135);
         girls.set("2008", 120);
- 
+
         model.addSeries(boys);
         model.addSeries(girls);
-         
+
         return model;
     }
-    
-     public void itemSelect(ItemSelectEvent event) {
+
+    public void itemSelect(ItemSelectEvent event) {
 
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
-                        "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
-         
+                "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
+
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
-
-   
-
-     
 
     public PieChartModel getPieModel() {
         return pieModel;
@@ -117,8 +114,6 @@ public class ProdutoBean {
     public void setBarModel(BarChartModel barModel) {
         this.barModel = barModel;
     }
-    
-    
 
     public void setPieModel(PieChartModel pieModel) {
         this.pieModel = pieModel;
@@ -258,7 +253,8 @@ public class ProdutoBean {
         buscaProdutoPorNome();
         return "busca-produto";
     }
-    public String buscaProdutoPorNomeTemplate(){
+
+    public String buscaProdutoPorNomeTemplate() {
         buscaProdutoPorNome();
         return "busca-produto";
     }
@@ -305,5 +301,22 @@ public class ProdutoBean {
             System.out.println(e);
         }
     }
+
+    public StreamedContent getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(StreamedContent imagem) {
+        this.imagem = imagem;
+    }
+
+    public StreamedContent getContent() {
+        byte[] data = this.produto.getFoto();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
+        imagem = new DefaultStreamedContent(byteArrayInputStream, "image/jpg", "foto");
+        return imagem;
+    }
+    
+    
 
 }

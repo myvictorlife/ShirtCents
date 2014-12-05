@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Usuarios" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bdc9f910-0d98-46fd-86cc-762a5c1d41fa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="336"/>
+	<property name="ireport.callouts" value="##Tue Dec 02 18:26:22 BRST 2014"/>
+	<subDataset name="dataset1" uuid="2225952d-a5aa-4827-b726-7e4dd039214e"/>
+	<queryString>
+		<![CDATA[SELECT
+     USUARIO.`nome` AS USUARIO_nome,
+     USUARIO.`email` AS USUARIO_email,
+     USUARIO.`login` AS USUARIO_login,
+     USUARIO.`senha` AS USUARIO_senha,
+     USUARIO.`profile` AS USUARIO_profile
+FROM
+     `USUARIO` USUARIO]]>
+	</queryString>
+	<field name="USUARIO_nome" class="java.lang.String"/>
+	<field name="USUARIO_email" class="java.lang.String"/>
+	<field name="USUARIO_login" class="java.lang.String"/>
+	<field name="USUARIO_senha" class="java.lang.String"/>
+	<field name="USUARIO_profile" class="java.lang.String"/>
+	<background>
+		<band height="313">
+			<image>
+				<reportElement mode="Opaque" x="0" y="0" width="165" height="173" uuid="fc4f354d-5177-487c-81d2-d486223ed7b7"/>
+				<imageExpression><![CDATA["/home/victor/Imagens/ps/camisa2.png"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="56" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement mode="Opaque" x="148" y="0" width="303" height="53" uuid="57187135-0086-421b-b93c-c7223390e9f9"/>
+				<imageExpression><![CDATA["/home/victor/Imagens/propaganda/ShirtCents3.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="199" y="0" width="182" height="20" uuid="2316ed5b-f3fd-47c7-92e0-bc6bd94ec663"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Relatorio de Usuários]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="177" height="20" uuid="587ab73f-beee-4771-adf6-f87a26257638"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="0" width="100" height="20" uuid="e2c1865a-43ab-41b5-9536-455ad7c5030f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Login]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="0" width="100" height="20" uuid="597b6e30-479b-45cc-902a-e377a09566f9"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Senha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="0" width="174" height="20" uuid="80d06111-42f7-4587-acca-9bd6a71ce93c"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="2" width="177" height="20" uuid="53312b67-b133-40a8-8a8a-f81ae83118cd"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{USUARIO_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="177" y="2" width="174" height="20" uuid="ff426e74-bd7c-4041-83e6-9adf6bee59bd"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{USUARIO_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="2" width="100" height="20" uuid="118c7520-bf81-456c-9b5a-f3d64fb2d76f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{USUARIO_login}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="2" width="100" height="20" uuid="dd83ed13-258d-45be-af3c-9b433c1d866f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{USUARIO_senha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="2" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="43" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="325" y="47" width="230" height="20" uuid="6c1748cb-ac45-43b4-8e84-676d733c694b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Powered by ShirtCents Team | 2014]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="0" width="80" height="20" uuid="fb90a514-ac07-4699-8c02-0c34ac983c5f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="511" y="0" width="40" height="20" uuid="969f07e1-60de-4ff1-8120-d5df39620c69"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="0" width="130" height="20" uuid="4239d1a2-a00b-4fbb-9603-f0c87898571d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

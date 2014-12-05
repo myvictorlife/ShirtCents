@@ -19,7 +19,6 @@
 
         <f:view>
 
-
             <h:form id="form-Produto">
                 <p:dataTable id="dt" value="#{produtoBean.produtosBusca}" var="item">
                     <p:column>
@@ -75,7 +74,12 @@
                         <f:facet name="header">
                             <h:outputText value="Foto"/>
                         </f:facet>
-                        <h:graphicImage value="#{meuComponenteSeam.imagemEmBytes}"/>  
+
+                        <p:column headerText="photo ">
+                            <p:graphicImage value="#{imgBean.image}" height="100" width="150">
+                                <f:param value="#{item.idProduto}" name="photo_id"></f:param>
+                            </p:graphicImage>
+                        </p:column>
 
                     </p:column>
 
@@ -83,9 +87,6 @@
                 </p:dataTable>
             </h:form>
         </f:view>
-
-
-
 
     </ui:define>
 </ui:composition>
