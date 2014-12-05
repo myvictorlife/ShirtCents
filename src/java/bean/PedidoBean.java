@@ -24,8 +24,15 @@ public class PedidoBean {
     private List<Pedido> pedidos = new ArrayList<Pedido>();
     private Produto produtoSelecionado = new Produto();
     private Usuario usuarioSelecionado = new Usuario();
+    private Itens itemSelecionado = new Itens();
 
     public PedidoBean() {
+    }
+    
+    public void removeItem(){
+        List<Itens> itens = pedido.getItensList();
+        itens.remove(itemSelecionado);
+        pedido.setItensList(itens);
     }
 
     public void selecionaUsuario() {
@@ -148,7 +155,15 @@ public class PedidoBean {
     public void setUsuarioSelecionado(Usuario usuarioSelecionado) {
         this.usuarioSelecionado = usuarioSelecionado;
     }
+
+    public Itens getItemSelecionado() {
+        return itemSelecionado;
+    }
+
+    public void setItemSelecionado(Itens itemSelecionado) {
+        this.itemSelecionado = itemSelecionado;
+    }
     
- 
+    
 
 }

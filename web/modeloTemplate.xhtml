@@ -102,7 +102,7 @@
                                     <b:button value="Meu carrinho" outcome="meu-carrinho.xhtml" rendered="#{usuarioLogin.logado}"/>
                                     <b:button value="Grafico de Produtos" outcome="grafico-produto" rendered="#{usuarioLogin.adm}" />
                                     <b:button value="Grafico de BarChart" outcome="grafico-barchart" rendered="#{usuarioLogin.adm}" />
-                                    <b:button value="Selecionar Produto"  outcome="selecionar-produto" />
+                                    <b:button value="Selecionar Produto"  outcome="selecionar-produto" rendered="#{usuarioLogin.logado}"/>
                                     <b:button value="Endereco"  outcome="endereco" rendered="#{usuarioLogin.adm}" />
                                     <b:button value="Perfil"  outcome="login" rendered="#{usuarioLogin.logado}" />
                                     <h:form prependId="false">

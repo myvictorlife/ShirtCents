@@ -42,7 +42,7 @@ public class ProdutoBean {
     private PieChartModel pieModel = new PieChartModel();
     private BarChartModel barModel = new BarChartModel();
 
-    private StreamedContent imagem;
+
 
     public ProdutoBean() {
         carregaCategoria();
@@ -302,21 +302,5 @@ public class ProdutoBean {
         }
     }
 
-    public StreamedContent getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(StreamedContent imagem) {
-        this.imagem = imagem;
-    }
-
-    public StreamedContent getContent() {
-        byte[] data = this.produto.getFoto();
-        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
-        imagem = new DefaultStreamedContent(byteArrayInputStream, "image/jpg", "foto");
-        return imagem;
-    }
-    
-    
 
 }

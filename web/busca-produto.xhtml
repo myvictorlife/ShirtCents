@@ -75,11 +75,11 @@
                             <h:outputText value="Foto"/>
                         </f:facet>
 
-                        <p:column headerText="photo ">
+                        
                             <p:graphicImage value="#{imgBean.image}" height="100" width="150">
                                 <f:param value="#{item.idProduto}" name="photo_id"></f:param>
                             </p:graphicImage>
-                        </p:column>
+                        
 
                     </p:column>
 
@@ -87,6 +87,8 @@
                 </p:dataTable>
             </h:form>
         </f:view>
+
+       
 
     </ui:define>
 </ui:composition>

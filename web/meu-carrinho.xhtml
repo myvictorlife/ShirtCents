@@ -10,8 +10,8 @@
                 xmlns:b="http://bootsfaces.net/ui">
 
     <ui:define name="right">
-        
-         <f:view>
+
+        <f:view>
 
 
             <h:form>
@@ -37,24 +37,46 @@
                         </f:facet>
                         <h:outputText value="#{item.idProduto.descricao}"/>
                     </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Foto"/>
+                        </f:facet>
+                        <p:graphicImage value="#{imgBean.image}" height="100" width="150">
+                            <f:param value="#{item.idProduto.idProduto}" name="photo_id"></f:param>
+                        </p:graphicImage>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Remover"/>
+                        </f:facet>
+
+                        <b:commandButton value="" icon="glyphicon glyphicon-trash" actionListener="#{pedidoBean.removeItem()}" update=":formListarUsuario :cadastroUsuario">
+                            <f:setPropertyActionListener value="#{item}" target="#{pedidoBean.itemSelecionado}" />
+                            <p:confirm header="Confirmaçao" message="Deseja apagar?" icon="ui-icon-alert" />
+                        </b:commandButton>
+                    </p:column>
+
+
                 </p:dataTable>
             </h:form>
             <br/>
             <br/>
             <h:form>
-                
+
                 <p:outputLabel value="Total Pedido: " for="tTotal"/>
                 <p:inputText id="tTotal" value="#{pedidoBean.pedido.total}" /> <h:outputText value=" "/>
-                
+
                 <p:outputLabel value="Usuario Logado: " for="tUsuarioLogado"/>
                 <p:inputText id="tUsuarioLogado" value="#{usuarioLogin.usuario.nome}" /><h:outputText value=" "/>
-                
-                    <h:commandButton value="Salvar Pedido" action="#{pedidoBean.salvar()}" />
+
+                <h:commandButton value="Salvar Pedido" action="#{pedidoBean.salvar()}" />
             </h:form>
 
-            
+
         </f:view>
-        
+
     </ui:define>
-    
+
 </ui:composition>
